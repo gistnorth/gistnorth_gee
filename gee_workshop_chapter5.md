@@ -263,10 +263,17 @@ var polygon = ee.Geometry.Polygon(
 
 var s2 = ee.ImageCollection('COPERNICUS/S2')
            .filterDate('2021-01-01','2021-12-31')
-           .filterBounds(polygon);
-var composite = s2.median();
-var bandSum = composite.reduce(ee.Reducer.sum());
-Map.addLayer(bandSum, {min:9000, max:15000}, 'Sum across Bands');
+           .filterBounds(polygon)  
+           .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
+           .select(['B8', 'B4']);
+
+var ndviCollection = s2.map(function(img) {
+  var ndvi = img.normalizedDifference(['B8', 'B4']).rename('NDVI');
+  return ndvi.copyProperties(img, img.propertyNames());
+});
+
+var meanNDVI = ndviCollection.reduce(ee.Reducer.mean());
+Map.addLayer(meanNDVI, {min: -1.0, max: 1.0}, 'mean across Bands');
 ```
 #### Reducer Image object
 ```javascript
