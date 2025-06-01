@@ -66,14 +66,15 @@ var geometry = ee.Geometry.Polygon(
       [98.9171009716561, 18.68557890893041],
       [99.0873890575936, 18.68557890893041],
       [99.0873890575936, 18.815619476862654]]]);
-var collection = ee.ImageCollection('COPERNICUS/S2')
+var collection = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
     .filterDate('2021-01-01', '2021-01-31')
     .filterBounds(geometry)
     .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
     .select(['B4', 'B3', 'B2'])
-    .median();
+    .median()
+    .multiply(0.0001);
 Map.centerObject(geometry, 10);
-Map.addLayer(collection, {bands: ['B4', 'B3', 'B2'], min: 0, max: 3000}, 'Median Image');
+Map.addLayer(collection, {bands: ['B4', 'B3', 'B2'], min: 0.0, max: 0.3, gamma: 1.5}, 'Median Image');
 ```
 
 ### 3. Geometry
