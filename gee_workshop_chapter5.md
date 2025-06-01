@@ -1,13 +1,19 @@
 ### 1. Image
+#### Image object
 ```javascript
 // Image object
-var image = ee.Image('LANDSAT/LC09/C02/T1_L2/LC09_129050_20231220');
+var image = ee.Image('LANDSAT/LC09/C02/T1_L2/LC09_129050_20231220')
+              .multiply(0.0000275);
 var band4 = image.select('SR_B4');
 var band3 = image.select('SR_B3');
 var band2 = image.select('SR_B2');
 var rgb = band4.addBands(band3).addBands(band2);
 Map.centerObject(image, 10);
-Map.addLayer(rgb, {min: 8000, max: 11000}, 'RGB');
+Map.addLayer(rgb, {min: 0.2, max: 0.6, gamma: 2.0}, 'RGB');
+
+```
+#### Image from ImageCollection
+```javascript
 
 // Image from ImageCollection
 var bangkok = ee.Geometry.Point([100.5018, 13.7563]);
@@ -22,7 +28,7 @@ var landsat9 = ee.ImageCollection('LANDSAT/LC09/C02/T1_L2')
 var image = landsat9.select(['SR_B1', 'SR_B2', 'SR_B3', 'SR_B4', 'SR_B5']);
 
 // Apply scale factors for Surface Reflectance
-var opticalBands = image.select('SR_B.').multiply(0.0000275).add(-0.2);
+var opticalBands = image.select('SR_B.').multiply(0.0000275);
 
 // Add image properties
 var image = opticalBands
@@ -41,9 +47,9 @@ print('Available Band Names:', image.bandNames());
 // Visualization parameters
 var trueColor = {
   bands: ['SR_B4', 'SR_B3', 'SR_B2'],
-  min: 0.0,
-  max: 0.3,
-  gamma: 1.4
+  min: 0.2,
+  max: 0.7,
+  gamma: 2.0
 };
 
 // Center map and display
