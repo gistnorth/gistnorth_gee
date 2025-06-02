@@ -205,6 +205,8 @@ var s2 = ee.ImageCollection('COPERNICUS/S2')
            .filterDate('2021-01-01','2021-03-31')
            .filterBounds(polygon);
 var meanTime = s2.reduce(ee.Reducer.mean());
+
+// Regional statistics (reduceRegion)
 var stats = meanTime.reduceRegion({
   reducer: ee.Reducer.mean().combine({
     reducer2: ee.Reducer.max(),
@@ -279,59 +281,10 @@ var ndviCollection = s2.map(function(img) {
 var meanNDVI = ndviCollection.reduce(ee.Reducer.mean());
 Map.addLayer(meanNDVI, {min: -1.0, max: 1.0}, 'mean across Bands');
 ```
-#### Reducer Image object
-```javascript
-// 21. Reducer Image object
-var reducer = ee.Reducer.mean();
-var image = ee.Image('LANDSAT/LC09/C02/T1_L2/LC09_129050_20231220');
-var mean = image.reduceRegion({
-    reducer: reducer,
-    geometry: image.geometry(),
-    scale: 30,
-    maxPixels: 1e13
-});
-print('Mean:', mean);
-
-// Image Collection reduce by polygon
-var polygon = ee.Geometry.Polygon(
-    [[[98.9171009716561, 18.815619476862654],
-      [98.9171009716561, 18.68557890893041],
-      [99.0873890575936, 18.68557890893041],
-      [99.0873890575936, 18.815619476862654]]]);
-
-var collection = ee.ImageCollection('COPERNICUS/S2')
-    .filterDate('2021-01-01', '2021-01-31')
-    .filterBounds(polygon)
-    .select(['B4', 'B3', 'B2'])
-    .mean()
-    .clip(polygon);  
-
-// zonal statistics
-var mean = collection.reduceRegion({
-    reducer: ee.Reducer.mean(),
-    geometry: polygon,
-    scale: 30,
-    maxPixels: 1e13
-});
-
-print(mean);
-Map.centerObject(polygon, 13);
-Map.addLayer(collection, {bands: ['B4', 'B3', 'B2'], min: 0, max: 3000}, 'Mean Image');
-
-// Feature Collection reducer
-var feature1 = ee.Feature(point1, {name: 'Chiang Mai', population: 1000000});
-var feature2 = ee.Feature(point2, {name: 'Sarapee', population: 8000000});
-var featureCollection = ee.FeatureCollection([feature1, feature2]);
-var meanPopulation = featureCollection.reduceColumns({
-    reducer: ee.Reducer.mean(),
-    selectors: ['population']
-});
-print('Mean Population:', meanPopulation.get('mean'));  // prints: Mean Population: 4000000
-```
 
 ### 7 join
 ```javascript
-// 22. Join operation
+// 21. Join operation
 var points = ee.FeatureCollection([
   ee.Feature(ee.Geometry.Point([100.5,13.7]), {pid:1}),
   ee.Feature(ee.Geometry.Point([100.55,13.75]), {pid:2})
