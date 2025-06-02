@@ -1,7 +1,7 @@
 ### 1. Image
 #### Image object
 ```javascript
-// Image object
+// 1. Image object
 var image = ee.Image('LANDSAT/LC09/C02/T1_L2/LC09_129050_20231220')
               .multiply(0.0000275);
 var band4 = image.select('SR_B4');
@@ -15,22 +15,23 @@ Map.addLayer(rgb, {min: 0.2, max: 0.6, gamma: 2.0}, 'RGB');
 #### Image from ImageCollection
 ```javascript
 
-// Image from ImageCollection
+// 2. Image from ImageCollection
 var bangkok = ee.Geometry.Point([100.5018, 13.7563]);
-// Load Landsat 9 Collection 2 Tier 1 raw data
+
+//3. Load Landsat 9 Surface Reflectance data
 var landsat9 = ee.ImageCollection('LANDSAT/LC09/C02/T1_L2')
   .filterBounds(bangkok)
   .filterDate('2023-01-01', '2023-12-31')
   .sort('CLOUD_COVER')
   .first();
 
-// Select desired spectral bands
+// 4.Select optical bands
 var image = landsat9.select(['SR_B1', 'SR_B2', 'SR_B3', 'SR_B4', 'SR_B5']);
 
-// Apply scale factors for Surface Reflectance
+// 5. Convert optical bands to reflectance
 var opticalBands = image.select('SR_B.').multiply(0.0000275);
 
-// Add image properties
+// 6. Set metadata properties
 var image = opticalBands
   .set({
     'system:time_start': landsat9.get('system:time_start'),
@@ -39,12 +40,12 @@ var image = opticalBands
     'CLOUD_COVER': landsat9.get('CLOUD_COVER')
   });
 
-// Print image metadata
+// 7. Print image metadata and band names
 print('Landsat 9 Image Metadata:', image);
 print('Acquisition Date:', image.get('ACQUISITION_DATE'));
 print('Available Band Names:', image.bandNames());
 
-// Visualization parameters
+// 8. Define visualization parameters for true color
 var trueColor = {
   bands: ['SR_B4', 'SR_B3', 'SR_B2'],
   min: 0.2,
@@ -52,7 +53,7 @@ var trueColor = {
   gamma: 2.0
 };
 
-// Center map and display
+// 9. Add the image to the map
 Map.centerObject(bangkok, 10);
 Map.addLayer(image, trueColor, 'Landsat 9 True Color');
 
@@ -60,7 +61,7 @@ Map.addLayer(image, trueColor, 'Landsat 9 True Color');
 
 ### 2. Image Collection
 ```javascript
-// Image Collection object sentinel 2 with cloud mask and median composite
+// 10. Image Collection object
 var geometry = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -79,7 +80,7 @@ Map.addLayer(collection, {bands: ['B4', 'B3', 'B2'], min: 0.0, max: 0.3, gamma: 
 
 ### 3. Geometry
 ```javascript
-// Geometry object
+// 11. Geometry object
 var point = ee.Geometry.Point([98.9171009716561, 18.815619476862654]);
 var line = ee.Geometry.LineString([[98.9171009716561, 18.815619476862654], [99.0873890575936, 18.68557890893041]]);
 var polygon = ee.Geometry.Polygon(
@@ -90,6 +91,8 @@ var polygon = ee.Geometry.Polygon(
 var buffer = point.buffer(1000);  // Buffer of 1000 meters
 var centroid = polygon.centroid();
 var area = polygon.area();  // Area of the polygon
+
+// 12. Print geometries and properties
 print('Point:', point);
 print('Line:', line);
 print('Polygon:', polygon);
@@ -107,7 +110,7 @@ Map.addLayer(centroid, {color: 'green'}, 'Centroid');
 
 ### 4. Feature
 ```javascript
-// Feature object
+// 13. Feature object
 var point = ee.Geometry.Point([98.9171009716561, 18.815619476862654]);
 var feature = ee.Feature(point, {name: 'Chiang Mai', population: 1000000});
 print('Feature:', feature);
@@ -127,7 +130,7 @@ Map.addLayer(feature, {color: 'red'}, 'Feature');
 
 ### 5. Feature Collection
 ```javascript
-// Feature Collection object
+// 14. Feature Collection object
 var point1 = ee.Geometry.Point([98.9171009716561, 18.815619476862654]);
 var point2 = ee.Geometry.Point([99.0873890575936, 18.68557890893041]);
 var feature1 = ee.Feature(point1, {name: 'Chiang Mai', population: 1000000});
@@ -141,7 +144,7 @@ Map.addLayer(featureCollection, {color: 'red'}, 'Feature Collection');
 
 ### 6. Reducer
 ```javascript
-// Per-pixel time series
+// 15. Reducer object across time
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -159,7 +162,7 @@ Map.addLayer(meanTime, {bands:['B4_mean','B3_mean','B2_mean'], min:0, max:3000},
 ```
 #### Histogram
 ```javascript
-// Grouped by time
+// 16. Histogram
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -191,7 +194,7 @@ print(chart);
 ```
 #### Image statistics (reduceRegion)
 ```javascript
-// Regional statistics (reduceRegion)
+// 17. Regional statistics (reduceRegion)
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -214,6 +217,7 @@ print('Mean & Max over polygon:', stats);
 ```
 #### Neighborhood / Focal operations (reduceNeighborhood)
 ```javascript
+// 18. Neighborhood / Focal operations (reduceNeighborhood)
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -234,7 +238,7 @@ Map.addLayer(focalMean, {min:0, max:3000}, '3×3 Focal Mean');
 ```
 #### Per-band summary (reduceRegion on multiband)
 ```javascript
-// Per-band summary (reduceRegion on multiband)
+// 19. Per-band summary (reduceRegion on multiband)
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -254,7 +258,7 @@ print('Mean per band:', bandStats);
 ```
 #### Across-band summary (reduceRegion on multiband)
 ```javascript
-// Across-band reduction (reduce)
+// 20. Across-band reduction (reduce)
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -277,7 +281,7 @@ Map.addLayer(meanNDVI, {min: -1.0, max: 1.0}, 'mean across Bands');
 ```
 #### Reducer Image object
 ```javascript
-// Reducer Image object
+// 21. Reducer Image object
 var reducer = ee.Reducer.mean();
 var image = ee.Image('LANDSAT/LC09/C02/T1_L2/LC09_129050_20231220');
 var mean = image.reduceRegion({
@@ -327,7 +331,7 @@ print('Mean Population:', meanPopulation.get('mean'));  // prints: Mean Populati
 
 ### 7 join
 ```javascript
-// Define point and polygon collections
+// 22. Join operation
 var points = ee.FeatureCollection([
   ee.Feature(ee.Geometry.Point([100.5,13.7]), {pid:1}),
   ee.Feature(ee.Geometry.Point([100.55,13.75]), {pid:2})
