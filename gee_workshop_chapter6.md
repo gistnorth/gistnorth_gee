@@ -1,6 +1,8 @@
 
 ### 1. images properties
 ```javascript
+
+// 1. images properties
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -12,6 +14,7 @@ var collection = ee.ImageCollection('COPERNICUS/S2')
     .filterBounds(polygon)
     .select(['B4', 'B3', 'B2']) 
 
+// 2. get properties of the image collection
 // get image count
 var imageCount = collection.size();
 print('Image Count:', imageCount); 
@@ -49,6 +52,7 @@ Map.addLayer(collection, {bands: ['B4', 'B3', 'B2'], min: 0, max: 3000}, 'Image 
 
 #### 2 Map object
 ```javascript
+// 3. Map object
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -71,6 +75,7 @@ Map.addLayer(
 
 #### 3 Viuslization
 ```javascript
+// 4. Visualization
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -86,6 +91,8 @@ var countries = ee.FeatureCollection('USDOS/LSIB_SIMPLE/2017')
 
 var dem = ee.Image('USGS/SRTMGL1_003');
 
+// 5. Bands and visualization parameters
+
 var rgbVis = {
   bands: ['B4', 'B3', 'B2'],  // Use red, green, blue bands
   min: 0,                     // Map pixel values from 0
@@ -93,6 +100,7 @@ var rgbVis = {
   gamma: 1.1                  // Apply slight gamma correction
 };
 
+// 6. Palette for DEM visualization
 var demVis = {
   min: 0,                      // lowest elevation (meters)
   max: 3000,                   // highest elevation (meters)
@@ -106,6 +114,7 @@ var demVis = {
   ]
 };
 
+// 7. Style for country borders
 var countryStyle = {
   color: 'FF0000',            // Red outline
   fillColor: 'FF000022',      // Translucent red fill
@@ -145,7 +154,7 @@ Map.addLayer(
 
 ### 4 Filter  
 ```javascript
-// Filter by date
+// 8. Filter
 var collection = ee.ImageCollection('COPERNICUS/S2')
     .filterDate('2025-01-01', '2025-03-31')   // Filter method by date
 Map.addLayer(collection, {bands: ['B4', 'B3', 'B2'], min: 0, max: 3000}, 'Image Collection');
@@ -180,7 +189,7 @@ Map.addLayer(countries, {color: 'red'}, 'Country');
 ### 5 Band and band selection
 #### Create a median composite and select bands
 ```javascript
-// Define a region of interest (ROI)
+// 9. Create a median composite and select bands
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -225,7 +234,7 @@ Map.addLayer(composite, falseColorVis, 'False Color Composite', false, 0.8);
 #### Band selection and add to new object
 ```javascript
 
-// band selection and add to new object
+// 10. Band selection and add to new object
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -263,7 +272,7 @@ Map.addLayer(rgbMultiBand, {min: 0, max: 3000}, 'RGB select from multiple band')
 
 #### Calculate NDVI using band math
 ```javascript
-// Calculate NDVI using band math
+// 11. Calculate NDVI using band math
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -304,7 +313,7 @@ Map.addLayer(compositeWithNDVI.select('NDVI'), ndviVis, 'NDVI');
 ```
 #### Calculate NDVI using normalizedDifference() method
 ```javascript
-// Calculate NDVI using normalizedDifference() method
+// 12. Calculate NDVI using normalizedDifference() method
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -335,7 +344,7 @@ Map.addLayer(compositeWithNDVI.select('NDVI'), ndviVis, 'NDVI');
 ```
 #### Calculate EVI using image.expression() and band math
 ```javascript
-// EVI calculation using image.expression() and band math
+// 13. Calculate EVI using image.expression() and band math
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -384,7 +393,7 @@ Map.addLayer(compositeWithEVIfunct.select('EVIfunct'), eviVis, 'EVI');
 ### 7 Clipping
 #### Clipping an image with a polygon
 ```javascript
-// Clipping an image with a polygon
+// 14. Clipping an image with a polygon
 var polygon = ee.Geometry.Polygon(
     [[[98.39692831218161, 18.837049183879376],
           [98.39692831218161, 18.66149307399751],
@@ -400,7 +409,7 @@ Map.addLayer(clippedDem, {palette: ['#a6611a','#dfc27d','#f5f5f5','#80cdc1','#01
 ```
 #### Clipping an image collection with a polygon
 ```javascript 
-// Clipping an image collection with a polygon
+// 15. Clipping an image collection with a polygon
 var polygon = ee.Geometry.Polygon(
     [[[98.39692831218161, 18.837049183879376],
           [98.39692831218161, 18.66149307399751],
@@ -422,6 +431,7 @@ Map.addLayer(clippedComposite, {bands: ['B4', 'B3', 'B2'], min: 500, max: 3000},
 
 ### 8 Import data from assets
 ```javascript
+// 16. Import data from assets
 var cm_province = ee.FeatureCollection("projects/ee-sakda-451407/assets/cm_province_4326");
 
 // define visualization parameters
@@ -437,7 +447,7 @@ Map.addLayer(cm_province, visParams, 'Chiang Mai Province');
 ### 9 Export data
 #### 9.1 Export an image to Google Drive
 ```javascript
-// Export an image to Google Drive
+// 17. Export an image to Google Drive
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
@@ -465,7 +475,7 @@ Export.image.toDrive({
 ```
 #### 9.2 Export a feature collection to Google Drive
 ```javascript
-// Get the border of Thailand
+// 18. Export a feature collection to Google Drive
 var countries = ee.FeatureCollection('USDOS/LSIB_SIMPLE/2017');
 var thailandBorder = countries.filter(ee.Filter.eq('country_na', 'Thailand'));
 // Export the feature collection to Google Drive
@@ -478,7 +488,7 @@ Export.table.toDrive({
 
 #### 9.3 Export an image to Google Earth Engine assets
 ```javascript
-// Export an image to Google Earth Engine assets
+// 19. Export an image to Google Earth Engine assets
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
