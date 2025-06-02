@@ -2,28 +2,28 @@ basic JavaScript guide for Google Earth Engine (GEE) development:
 
 ### 1. Variables and Data Types
 ```javascript
-// Variable declaration
+// 1.Variable declaration
 var number = 42;                  // Number
 var text = "Hello, Earth!";       // String
 var boolean = true;               // Boolean
 var list = [1, 2, 3, 4];          // Array
 var object = {key: "value"};      // Object
 
-// Array variable
+// 1.Array variable
 var array = [1, 2, 3, 4, 5];
-// Accessing array elements
+// 3.Accessing array elements
 var firstElement = array[0];      // 1
-// Modifying array elements
+// 4.Modifying array elements
 array[1] = 10;                   // [1, 10, 3, 4, 5]
-// Object variable
+// 5.Object variable
 var obj = {name: "Earth", age: 4.5};
 obj.name = "Mars";              // {name: "Mars", age: 4.5}
-// Accessing object properties
+// 6.Accessing object properties
 var name = obj.name;            // "Mars"
 // Modifying object properties
 obj.age = 4.6;                 // {name: "Mars", age: 4.6}
 
-// Earth Engine objects
+// 7.Earth Engine objects
 var numList = ee.List([1, 2, 3, 4, 5]);
 var image = ee.Image("LANDSAT/LC08/C01/T1/LC08_044034_20140318");
 var geometry = ee.Geometry.Point([-122.082, 37.42]);
@@ -41,42 +41,46 @@ Multi-line comment
 ```
 
 ### 3. Functions
+#### Client-side function
 ```javascript
-// function declaration 
+// 8.function declaration 
 function showMessage() {
     print('Hello, Earth Engine!');
 }
 
-// call the function
+// 9.call the function
 showMessage();
 
-// Function with parameters
+// 10.Function with parameters
 function addNumbers(a, b) {
     return a + b;
 }
 var sum = addNumbers(5, 10);      // 15
 
-// Earth Engine function
+```
+#### Earth Engine function
+```javascript
+// 11.Earth Engine function
 var roi = ee.Geometry.Polygon(
         [[[98.9171009716561, 18.815619476862654],
           [98.9171009716561, 18.68557890893041],
           [99.0873890575936, 18.68557890893041],
           [99.0873890575936, 18.815619476862654]]]);
-// Define a function to calculate NDVI for one image
+// 12.Define a function to calculate NDVI for one image
 function calcNDVI(image) {
     // Compute normalized difference of bands B8 and B4
     return image.normalizedDifference(['B8', 'B4'])
                 .rename('NDVI');
 }
 
-// Apply the function to every image in the collection
+// 13.Apply the function to every image in the collection
 var collection = ee.ImageCollection('COPERNICUS/S2')
     .filterDate('2021-01-01', '2021-01-31')
     .filterBounds(roi);
 
 var ndviCollection = collection.map(calcNDVI);
 
-// Compute the median composite of NDVI
+// 14.Compute the median composite of NDVI
 var medianNDVI = ndviCollection.median();
 
 Map.addLayer(medianNDVI, {min: 0, max: 1}, 'Median NDVI');
@@ -84,12 +88,13 @@ Map.addLayer(medianNDVI, {min: 0, max: 1}, 'Median NDVI');
 ```
 
 ### 4. if…else Statements
+#### Client-side if…else
 ```javascript
-// Client-side if…else
-let x = 7;
-let y = 5;
+// 15.Client-side if…else
+var x = 7;
+var y = 5;
 
-// Simple if-else to compare JS numbers
+// 16.Simple if-else to compare JS numbers
 if (x > y) {
   print('x is greater than y');  // prints: x is greater than y
 } else if (x === y) {
@@ -97,51 +102,53 @@ if (x > y) {
 } else {
   print('x is less than y');
 }
-
-// Earth Engine if…else
-var image = ee.Image('LANDSAT/LC08/C01/T1/LC08_044034_20140318');
+```
+#### Earth Engine if…else
+```javascript
+// 17.Earth Engine if…else
+var image = ee.Image('LANDSAT/LC09/C02/T1_TOA/LC09_131047_20240103');
 var ndvi = image.normalizedDifference(['B5', 'B4']);
 var threshold = 0.5;
 var mask = ndvi.gt(threshold);
 var maskedImage = image.updateMask(mask);
 Map.addLayer(maskedImage, {bands: ['B4', 'B3', 'B2'], min: 0, max: 3000}, 'Masked Image');
 
-// ee.Algorithms.If
+// 18.ee.Algorithms.If
 var condition = ee.Number(5);
 var result = ee.Algorithms.If(condition.gt(0), 'Positive', 'Negative');
-print('Result:', result);  // prints: Result: Positive
+print('Result:', result);  
 
 ```
 
 ### 5. Loops
 ```javascript
-// Client-side for loop
+// 19.Client-side for loop
 for (var i = 0; i < 5; i++) {
     print('Iteration:', i);
 }
 
-// Client-side while loop
+// 20.Client-side while loop
 var j = 0;
 while (j < 5) {
     print('While loop iteration:', j);
     j++;
 }
 
-// map function
+// 21.map function
 var numbers = [1, 2, 3, 4, 5];
 var squaredNumbers = numbers.map(function(num) {
     return num * num;
 });
 print('Squared Numbers:', squaredNumbers);  // [1, 4, 9, 16, 25]
 
-// Server-side for loop
+// 22.Server-side for loop
 var serverList = ee.List([1, 2, 3, 4, 5]);
 var serverSquared = serverList.map(function(num) {
     return ee.Number(num).multiply(ee.Number(num));
 });
 print('Server Squared:', serverSquared);  // [1, 4, 9, 16, 25]
 
-// Earth Engine map function
+// 23.Earth Engine map function
 var collection = ee.ImageCollection('LANDSAT/LC08/C01/T1');
 var ndviCollection = collection.map(function(image) {
     return image.normalizedDifference(['B5', 'B4']).rename('NDVI');
@@ -151,6 +158,7 @@ var ndviCollection = collection.map(function(image) {
 
 ### 6. Object
 ```javascript
+// 24.Object creation
 var Car = {
     wheels: 4,
     door: 2,
@@ -160,6 +168,7 @@ var Car = {
     }
 };
 
+// 25.Accessing object properties
 var tota = Car;
 print('Toyota wheels:', tota.wheels);  
 tota.color = "red";
@@ -170,6 +179,7 @@ var hoda = Car;
 hoda.door = 5; 
 print('Hoda door:', hoda.door); 
 
+// 26.Object methods
 tota.drive = function() {
     print('Car is driving');
     return this;  
@@ -182,21 +192,21 @@ tota.stop = function() {
 };
 // tota.stop();  
 
-// chain method calls
+// 27.Method chaining
 tota.start().drive().stop(); 
 ```
 
 ### 7. EE Objects and Methods
 #### Earth Engine objects
 ```javascript
-// instance of Earth Engine objects 
+// 28.Earth Engine objects for geometry and feature
 var geometry = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
       [99.0873890575936, 18.68557890893041],
       [99.0873890575936, 18.815619476862654]]]); 
 
-// create a feature with properties
+// 29.methods of Earth Engine objects for geometry
 var feature = ee.Feature(geometry, {name: 'Chiang Mai'});
 print('Feature:', feature);  
 
@@ -210,7 +220,7 @@ Map.addLayer(feature, {color: 'red'}, 'Feature');
 ```
 #### Earth Engine objects for image and image collection
 ```javascript
-// instance of Earth Engine objects for image 
+// 30.Earth Engine objects for image
 var image = ee.Image('LANDSAT/LC09/C02/T1_TOA/LC09_131047_20240103');
 // methods of Earth Engine objects for image
 var bandNames = image.bandNames();
@@ -223,7 +233,7 @@ print('Band 4:', band4);
 Map.centerObject(image, 10);
 Map.addLayer(image, {bands: ['B4', 'B3', 'B2'], min: 0, max: 0.3000}, 'RGB');
 
-// instance of Earth Engine objects for image collection
+// 31.Earth Engine objects for image collection
 var dataset = ee.ImageCollection('LANDSAT/LC09/C02/T1_TOA')
     .filterDate('2024-01-01', '2024-03-30') // Filter method by date;
 var trueColor432 = dataset.select(['B4', 'B3', 'B2']);
@@ -237,7 +247,7 @@ Map.addLayer(trueColor432, trueColor432Vis, 'True Color (432)');
 
 ### 8. Method Chaining
 ```javascript
-// Non-chaining methods
+// 32.Method chaining for Earth Engine objects
 var image = ee.Image('LANDSAT/LC09/C02/T1_TOA/LC09_131047_20240103');
 var band4 = image.select('B4');
 var band3 = image.select('B3');
@@ -247,7 +257,7 @@ image.select(['B4', 'B3', 'B2'])
 Map.centerObject(image, 10);
 Map.addLayer(image, {min: 0, max: 3000}, 'RGB');
 
-// Chaining methods for image collection
+// 33.Method chaining for Earth Engine objects with ImageCollection
 var collection = ee.ImageCollection('LANDSAT/LC09/C02/T1_TOA')
     .filterDate('2024-01-01', '2024-03-30')
     .filterBounds(geometry)
