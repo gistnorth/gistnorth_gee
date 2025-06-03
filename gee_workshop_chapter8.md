@@ -119,3 +119,57 @@ print('Confusion matrix (1st period):', testAccuracy);
 print('Overall accuracy:', testAccuracy.accuracy());
 
 ```
+#### 
+```javascript
+// 11. Perform Change Detection
+// 11.1 สร้างภาพที่แสดงการเปลี่ยนแปลงแบบ "จาก-ไป" (From-To Change)
+// โดยนำค่า class จาก classified1 คูณ 100 แล้วบวกด้วยค่า class จาก classified2
+// เพื่อให้ได้ค่าที่ไม่ซ้ำกันสำหรับแต่ละคู่ของการเปลี่ยนแปลง เช่น ป่าไม้(3) ไป เมือง(1) จะเป็น 301
+// น้ำ(0) ไป เกษตร(2) จะเป็น 2
+// ป่าไม้(3) คงเดิมเป็น ป่าไม้(3) จะเป็น 303
+var fromToChange = classified1.multiply(100).add(classified2);
+
+// แสดงผลภาพ "from-to change" แบบดิบ (อาจจะต้องปรับ min/max หรือใช้ palette ที่เหมาะสมหากต้องการแสดงทุกการเปลี่ยนแปลง)
+Map.addLayer(fromToChange, {min:0, max:404, palette: ['grey', 'yellow', 'orange', 'red']}, 'From-To Change (Raw)', false);
+
+// 11.2 แสดงตัวอย่างการเน้นการเปลี่ยนแปลงเฉพาะบางประเภท
+// เช่น การเปลี่ยนแปลงจาก ป่าไม้ (class 3) ไปเป็น พื้นที่เมือง (class 1)
+var forestToUrban = fromToChange.eq(301); // 3*100 + 1 = 301
+Map.addLayer(forestToUrban.selfMask(), {palette: ['FF00FF']}, 'Change: Forest to Urban', true);
+
+// เช่น การเปลี่ยนแปลงจาก พื้นที่เกษตร (class 2) ไปเป็น พื้นที่เมือง (class 1)
+var agricultureToUrban = fromToChange.eq(201); // 2*100 + 1 = 201
+Map.addLayer(agricultureToUrban.selfMask(), {palette: ['FFA500']}, 'Change: Agriculture to Urban', false);
+
+// เช่น พื้นที่ที่ไม่มีการเปลี่ยนแปลง และยังคงเป็น ป่าไม้ (class 3)
+var stableForest = fromToChange.eq(303); // 3*100 + 3 = 303
+Map.addLayer(stableForest.selfMask(), {palette: ['004D00']}, 'Stable: Forest', false);
+
+// 11.3 สร้างภาพการเปลี่ยนแปลงแบบ Binary (มีการเปลี่ยนแปลง / ไม่มีการเปลี่ยนแปลง)
+// โดยที่ 1 หมายถึงมีการเปลี่ยนแปลง, 0 หมายถึงไม่มีการเปลี่ยนแปลง
+var binaryChange = classified1.neq(classified2);
+
+// แสดงผลภาพ binary change (พื้นที่สีแดงคือมีการเปลี่ยนแปลง)
+Map.addLayer(binaryChange.selfMask(), {palette: ['FF0000']}, 'Binary Change (Any Change)', true);
+
+// 12. (เพิ่มเติม) คำนวณพื้นที่ของการเปลี่ยนแปลงแต่ละประเภท (ตัวอย่าง)
+
+// สร้างฟังก์ชันสำหรับคำนวณพื้นที่
+function calculateArea(image, geometry, scale) {
+  var areaImage = image.multiply(ee.Image.pixelArea());
+  var area = areaImage.reduceRegion({
+    reducer: ee.Reducer.sum(),
+    geometry: geometry,
+    scale: scale,
+    maxPixels: 1e13
+  });
+  return ee.Number(area.get(image.bandNames().get(0))).divide(10000); // m^2 to hectares
+}
+
+// คำนวณพื้นที่ที่เปลี่ยนจากป่าไม้เป็นเมือง
+var areaForestToUrban_ha = calculateArea(forestToUrban, roi, 10);
+print('Area changed from Forest to Urban (hectares):', areaForestToUrban_ha);
+
+// คำนวณพื้นที่ที่มีการเปลี่ยนแปลงทั้งหมด (binary change)
+var areaAnyChange_ha = calculateArea(binaryChange, roi, 10);
+print('Total area with any change (hectares):', areaAnyChange_ha);
