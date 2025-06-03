@@ -238,6 +238,18 @@ var focalMean = meanTime.reduceNeighborhood({
 Map.addLayer(focalMean, {min:0, max:3000}, '3×3 Focal Mean');
 
 ```
+
+#### Reduce minMax
+```javascript
+var minMax = dataset.reduceRegion({
+  reducer: ee.Reducer.minMax(),
+  geometry: geometry,
+  scale: 100,
+  maxPixels: 1e9
+});
+print('ค่า min/max ของ NDVI:', minMax);
+```
+
 #### Per-band summary (reduceRegion on multiband)
 ```javascript
 // 19. Per-band summary (reduceRegion on multiband)
