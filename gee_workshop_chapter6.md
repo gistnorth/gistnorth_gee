@@ -75,24 +75,41 @@ Map.addLayer(
 
 #### 3 Viuslization
 ```javascript
-// 4. Visualization
+// 4. study area
 var polygon = ee.Geometry.Polygon(
     [[[98.9171009716561, 18.815619476862654],
       [98.9171009716561, 18.68557890893041],
       [99.0873890575936, 18.68557890893041],
       [99.0873890575936, 18.815619476862654]]]);
-
-var collection = ee.ImageCollection('COPERNICUS/S2')
-    .filterDate('2025-01-01', '2025-03-31')
-    .filterBounds(polygon)
-
+      
+// 5. vector visualization
 var countries = ee.FeatureCollection('USDOS/LSIB_SIMPLE/2017')
     .filter(ee.Filter.eq('country_na', 'Thailand'));
 
-var dem = ee.Image('USGS/SRTMGL1_003');
+var countryStyle = {
+  color: 'FF0000',            // Red outline
+  fillColor: 'FF000022',      // Translucent red fill
+  width: 1                    // 1-pixel wide border
+};
 
-// 5. Bands and visualization parameters
+Map.addLayer(
+  countries,                // eeObject
+  countryStyle,             // visParams
+  'Country Borders',        // name
+  false,                    // shown (hidden by default)
+  1.0                       // opacity (fully opaque)
+);
 
+// 6. ImageCollection visualization
+var countryStyle = {
+  color: 'FF0000',            // Red outline
+  fillColor: 'FF000022',      // Translucent red fill
+  width: 1                    // 1-pixel wide border
+};
+var collection = ee.ImageCollection('COPERNICUS/S2')
+    .filterDate('2025-01-01', '2025-03-31')
+    .filterBounds(polygon);
+    
 var rgbVis = {
   bands: ['B4', 'B3', 'B2'],  // Use red, green, blue bands
   min: 0,                     // Map pixel values from 0
@@ -100,7 +117,17 @@ var rgbVis = {
   gamma: 1.1                  // Apply slight gamma correction
 };
 
-// 6. Palette for DEM visualization
+Map.centerObject(collection, 8);
+Map.addLayer(
+  collection,               // eeObject
+  rgbVis,                   // visParams
+  'Sentinel-2 RGB',         // name
+  true,                     // shown
+  0.8                       // opacity
+);
+
+// 7. Image visualization
+var dem = ee.Image('USGS/SRTMGL1_003');
 var demVis = {
   min: 0,                      // lowest elevation (meters)
   max: 3000,                   // highest elevation (meters)
@@ -114,40 +141,12 @@ var demVis = {
   ]
 };
 
-// 7. Style for country borders
-var countryStyle = {
-  color: 'FF0000',            // Red outline
-  fillColor: 'FF000022',      // Translucent red fill
-  width: 1                    // 1-pixel wide border
-};
-
-Map.centerObject(collection, 8);   // Zoom level 8
-
-// Add the RGB image layer
-Map.addLayer(
-  collection,               // eeObject
-  rgbVis,                   // visParams
-  'Sentinel-2 RGB',         // name
-  true,                     // shown
-  0.8                       // opacity
-);
-
-// Add the DEM layer
 Map.addLayer(
   dem,                     // eeObject
   demVis,                  // visParams
   'SRTM DEM',              // name
   false,                   // shown (hidden by default)
   0.5                      // opacity (50% transparent)
-);
-
-// Add the country borders layer
-Map.addLayer(
-  countries,                // eeObject
-  countryStyle,             // visParams
-  'Country Borders',        // name
-  false,                    // shown (hidden by default)
-  1.0                       // opacity (fully opaque)
 );
 
 ```
