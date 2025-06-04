@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#land-use-and-land-cover-classification-with-google-earth-engine" class="md-skip">
+        <a href="#81-land-use-and-land-cover-classification-with-google-earth-engine" class="md-skip">
           Skip to content
         </a>
       
@@ -454,109 +454,109 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#land-use-and-land-cover-classification-with-google-earth-engine" class="md-nav__link">
+  <a href="#81-land-use-and-land-cover-classification-with-google-earth-engine" class="md-nav__link">
     <span class="md-ellipsis">
-      Land use and Land Cover Classification with Google Earth Engine
+      8.1 Land use and Land Cover Classification with Google Earth Engine
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Land use and Land Cover Classification with Google Earth Engine">
+    <nav class="md-nav" aria-label="8.1 Land use and Land Cover Classification with Google Earth Engine">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#define-region-of-interest-and-load-training-data" class="md-nav__link">
+  <a href="#1define-region-of-interest-and-load-training-data" class="md-nav__link">
     <span class="md-ellipsis">
-      Define region of interest and load training data
+      1.Define region of interest and load training data
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#load-training-data" class="md-nav__link">
+  <a href="#2load-training-data" class="md-nav__link">
     <span class="md-ellipsis">
-      Load training data
+      2.Load training data
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#load-sentinel-2-data-and-build-composites-for-two-date-ranges" class="md-nav__link">
+  <a href="#3load-sentinel-2-data-and-build-composites-for-two-date-ranges" class="md-nav__link">
     <span class="md-ellipsis">
-      Load Sentinel-2 data and build composites for two date ranges
+      3.Load Sentinel-2 data and build composites for two date ranges
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#select-spectral-bands-sample-training-data-train-classifiers-and-classify-images" class="md-nav__link">
+  <a href="#4select-spectral-bands-sample-training-data-train-classifiers-and-classify-images" class="md-nav__link">
     <span class="md-ellipsis">
-      Select spectral bands, sample training data, train classifiers, and classify images
+      4.Select spectral bands, sample training data, train classifiers, and classify images
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#sample-the-composites-at-the-training-points" class="md-nav__link">
+  <a href="#5sample-the-composites-at-the-training-points" class="md-nav__link">
     <span class="md-ellipsis">
-      Sample the composites at the training points
+      5.Sample the composites at the training points
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#train-classifiers-and-classify-the-composites" class="md-nav__link">
+  <a href="#6train-classifiers-and-classify-the-composites" class="md-nav__link">
     <span class="md-ellipsis">
-      Train classifiers and classify the composites
+      6.Train classifiers and classify the composites
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#classify-the-composites-and-define-a-color-palette" class="md-nav__link">
+  <a href="#7classify-the-composites-and-define-a-color-palette" class="md-nav__link">
     <span class="md-ellipsis">
-      Classify the composites and define a color palette
+      7.Classify the composites and define a color palette
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#define-a-color-palette-for-visualization" class="md-nav__link">
+  <a href="#8define-a-color-palette-for-visualization" class="md-nav__link">
     <span class="md-ellipsis">
-      Define a color palette for visualization
+      8.Define a color palette for visualization
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#display-the-results" class="md-nav__link">
+  <a href="#9display-the-results" class="md-nav__link">
     <span class="md-ellipsis">
-      Display the results
+      9.Display the results
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#optional-accuracy-assessment-for-the-first-period" class="md-nav__link">
+  <a href="#10optional-accuracy-assessment-for-the-first-period" class="md-nav__link">
     <span class="md-ellipsis">
-      Optional: accuracy assessment for the first period
+      10.Optional: accuracy assessment for the first period
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#11perform-change-detection" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      11.Perform Change Detection
     </span>
   </a>
   
@@ -618,22 +618,22 @@
 
   <h1>บทที่ 8</h1>
 
-<h3 id="land-use-and-land-cover-classification-with-google-earth-engine">Land use and Land Cover Classification with Google Earth Engine<a class="headerlink" href="#land-use-and-land-cover-classification-with-google-earth-engine" title="Permanent link">&para;</a></h3>
-<h4 id="define-region-of-interest-and-load-training-data">Define region of interest and load training data<a class="headerlink" href="#define-region-of-interest-and-load-training-data" title="Permanent link">&para;</a></h4>
+<h3 id="81-land-use-and-land-cover-classification-with-google-earth-engine">8.1 Land use and Land Cover Classification with Google Earth Engine<a class="headerlink" href="#81-land-use-and-land-cover-classification-with-google-earth-engine" title="Permanent link">&para;</a></h3>
+<h4 id="1define-region-of-interest-and-load-training-data">1.Define region of interest and load training data<a class="headerlink" href="#1define-region-of-interest-and-load-training-data" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1">// 1. Supervised land-use classification (5 classes) using Sentinel-2 at two time periods</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">roi</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">([[[</span><span class="mf">98.65287970599341</span><span class="p">,</span><span class="w"> </span><span class="mf">17.722345177988142</span><span class="p">],</span>
 <span class="w">          </span><span class="p">[</span><span class="mf">98.65287970599341</span><span class="p">,</span><span class="w"> </span><span class="mf">17.518162943397694</span><span class="p">],</span>
 <span class="w">          </span><span class="p">[</span><span class="mf">98.91105841693091</span><span class="p">,</span><span class="w"> </span><span class="mf">17.518162943397694</span><span class="p">],</span>
 <span class="w">          </span><span class="p">[</span><span class="mf">98.91105841693091</span><span class="p">,</span><span class="w"> </span><span class="mf">17.722345177988142</span><span class="p">]]]);</span>
 </code></pre></div>
-<h4 id="load-training-data">Load training data<a class="headerlink" href="#load-training-data" title="Permanent link">&para;</a></h4>
+<h4 id="2load-training-data">2.Load training data<a class="headerlink" href="#2load-training-data" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1">// 2. Load training data (FeatureCollection of points or polygons with a property &#39;landcover&#39; 0–4)</span>
 <span class="c1">//    You must prepare this asset with 5 classes: e.g. 0=Water,1=Urban,2=Agriculture,3=Forest,4=Bare</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">trainingFC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s2">&quot;projects/ee-sakda-451407/assets/trainning&quot;</span><span class="p">);</span>
 
 <span class="nx">print</span><span class="p">(</span><span class="nx">trainingFC</span><span class="p">);</span>
 </code></pre></div>
-<h4 id="load-sentinel-2-data-and-build-composites-for-two-date-ranges">Load Sentinel-2 data and build composites for two date ranges<a class="headerlink" href="#load-sentinel-2-data-and-build-composites-for-two-date-ranges" title="Permanent link">&para;</a></h4>
+<h4 id="3load-sentinel-2-data-and-build-composites-for-two-date-ranges">3.Load Sentinel-2 data and build composites for two date ranges<a class="headerlink" href="#3load-sentinel-2-data-and-build-composites-for-two-date-ranges" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1">// 3. Load Sentinel-2 and build composites for two date ranges</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">start1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2019-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">end1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2019-01-31&#39;</span><span class="p">;</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">start2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2025-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">end2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2025-01-31&#39;</span><span class="p">;</span>
@@ -650,11 +650,11 @@
 <span class="kd">var</span><span class="w"> </span><span class="nx">comp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">makeComposite</span><span class="p">(</span><span class="nx">start1</span><span class="p">,</span><span class="w"> </span><span class="nx">end1</span><span class="p">);</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">comp2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">makeComposite</span><span class="p">(</span><span class="nx">start2</span><span class="p">,</span><span class="w"> </span><span class="nx">end2</span><span class="p">);</span>
 </code></pre></div>
-<h4 id="select-spectral-bands-sample-training-data-train-classifiers-and-classify-images">Select spectral bands, sample training data, train classifiers, and classify images<a class="headerlink" href="#select-spectral-bands-sample-training-data-train-classifiers-and-classify-images" title="Permanent link">&para;</a></h4>
+<h4 id="4select-spectral-bands-sample-training-data-train-classifiers-and-classify-images">4.Select spectral bands, sample training data, train classifiers, and classify images<a class="headerlink" href="#4select-spectral-bands-sample-training-data-train-classifiers-and-classify-images" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1">// 4. Select spectral bands for classification</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">bands</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B2&#39;</span><span class="p">,</span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="s1">&#39;B8&#39;</span><span class="p">,</span><span class="s1">&#39;B11&#39;</span><span class="p">,</span><span class="s1">&#39;B12&#39;</span><span class="p">];</span><span class="w">  </span><span class="c1">// Blue, Green, Red, NIR, SWIR1, SWIR2</span>
 </code></pre></div>
-<h4 id="sample-the-composites-at-the-training-points">Sample the composites at the training points<a class="headerlink" href="#sample-the-composites-at-the-training-points" title="Permanent link">&para;</a></h4>
+<h4 id="5sample-the-composites-at-the-training-points">5.Sample the composites at the training points<a class="headerlink" href="#5sample-the-composites-at-the-training-points" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1">// 5. Sample the composites at the training points</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">samples1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">comp1</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="nx">bands</span><span class="p">).</span><span class="nx">sampleRegions</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">collection</span><span class="o">:</span><span class="w"> </span><span class="nx">trainingFC</span><span class="p">,</span>
@@ -670,7 +670,7 @@
 <span class="w">  </span><span class="nx">geometries</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="p">});</span>
 </code></pre></div>
-<h4 id="train-classifiers-and-classify-the-composites">Train classifiers and classify the composites<a class="headerlink" href="#train-classifiers-and-classify-the-composites" title="Permanent link">&para;</a></h4>
+<h4 id="6train-classifiers-and-classify-the-composites">6.Train classifiers and classify the composites<a class="headerlink" href="#6train-classifiers-and-classify-the-composites" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1">// 6. Train classifiers (Random Forest) for each period</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">classifier1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Classifier</span><span class="p">.</span><span class="nx">smileRandomForest</span><span class="p">(</span><span class="mf">100</span><span class="p">)</span>
 <span class="w">                    </span><span class="p">.</span><span class="nx">train</span><span class="p">({</span>
@@ -686,12 +686,12 @@
 <span class="w">                      </span><span class="nx">inputProperties</span><span class="o">:</span><span class="w"> </span><span class="nx">bands</span>
 <span class="w">                    </span><span class="p">});</span>
 </code></pre></div>
-<h4 id="classify-the-composites-and-define-a-color-palette">Classify the composites and define a color palette<a class="headerlink" href="#classify-the-composites-and-define-a-color-palette" title="Permanent link">&para;</a></h4>
+<h4 id="7classify-the-composites-and-define-a-color-palette">7.Classify the composites and define a color palette<a class="headerlink" href="#7classify-the-composites-and-define-a-color-palette" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1">// 7. Classify the composites</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">classified1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">comp1</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="nx">bands</span><span class="p">).</span><span class="nx">classify</span><span class="p">(</span><span class="nx">classifier1</span><span class="p">);</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">classified2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">comp2</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="nx">bands</span><span class="p">).</span><span class="nx">classify</span><span class="p">(</span><span class="nx">classifier2</span><span class="p">);</span>
 </code></pre></div>
-<h4 id="define-a-color-palette-for-visualization">Define a color palette for visualization<a class="headerlink" href="#define-a-color-palette-for-visualization" title="Permanent link">&para;</a></h4>
+<h4 id="8define-a-color-palette-for-visualization">8.Define a color palette for visualization<a class="headerlink" href="#8define-a-color-palette-for-visualization" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1">// 8. Define a 4-class palette</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
 <span class="w">  </span><span class="s1">&#39;0000FF&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">// 0 = Water (blue)</span>
@@ -700,7 +700,7 @@
 <span class="w">  </span><span class="s1">&#39;007F00&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">// 3 = Forest (dark green)</span>
 <span class="p">];</span>
 </code></pre></div>
-<h4 id="display-the-results">Display the results<a class="headerlink" href="#display-the-results" title="Permanent link">&para;</a></h4>
+<h4 id="9display-the-results">9.Display the results<a class="headerlink" href="#9display-the-results" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1">// 9. Display the results</span>
 <span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">roi</span><span class="p">);</span>
 <span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">comp1</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="s1">&#39;B2&#39;</span><span class="p">],</span><span class="w"> </span><span class="nx">min</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="mf">3000</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;True Color 1&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
@@ -709,7 +709,7 @@
 <span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">comp2</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="s1">&#39;B2&#39;</span><span class="p">],</span><span class="w"> </span><span class="nx">min</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="mf">3000</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;True Color 2&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 <span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">classified2</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">min</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="nx">palette</span><span class="o">:</span><span class="w"> </span><span class="nx">palette</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;Classified Jul–Sep&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
 </code></pre></div>
-<h4 id="optional-accuracy-assessment-for-the-first-period">Optional: accuracy assessment for the first period<a class="headerlink" href="#optional-accuracy-assessment-for-the-first-period" title="Permanent link">&para;</a></h4>
+<h4 id="10optional-accuracy-assessment-for-the-first-period">10.Optional: accuracy assessment for the first period<a class="headerlink" href="#10optional-accuracy-assessment-for-the-first-period" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1">// 10. Optional: accuracy assessment for period 1</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">trainTest1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">samples1</span><span class="p">.</span><span class="nx">randomColumn</span><span class="p">(</span><span class="s1">&#39;rnd&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">42</span><span class="p">);</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">split</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.7</span><span class="p">;</span>
@@ -725,7 +725,7 @@
 <span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Confusion matrix (1st period):&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">testAccuracy</span><span class="p">);</span>
 <span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Overall accuracy:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">testAccuracy</span><span class="p">.</span><span class="nx">accuracy</span><span class="p">());</span>
 </code></pre></div>
-<h4 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<h4 id="11perform-change-detection">11.Perform Change Detection<a class="headerlink" href="#11perform-change-detection" title="Permanent link">&para;</a></h4>
 <p>```javascript
 // 11. Perform Change Detection
 // 11.1 สร้างภาพที่แสดงการเปลี่ยนแปลงแบบ "จาก-ไป" (From-To Change)
