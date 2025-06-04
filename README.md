@@ -25,7 +25,7 @@
 | บทที่ 8 | [การจำแนกที่ดินและการเปลี่ยนแปลง](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter8.md) 
 | บทที่ 9 | [การติดตามสถานการณ์ภัยพิบัติ](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter9.md) 
 | 🔗 | [เอกสารบรรยาย](https://github.com/gistnorth/gistnorth_gee/blob/main/document/gee_workshop_ppt.pdf) 
-| 📄 | [เอกสารคู่มือ (PDF)](https://github.com/gistnorth/gistnorth_gee/blob/main/document/gee_workshop.pdf) 
+| 📄 | [เอกสารคู่มือ (PDF)](https://github.com/gistnorth/gistnorth_gee/blob/main/document/gee_workshop_doc.pdf) 
 
 ---
 
