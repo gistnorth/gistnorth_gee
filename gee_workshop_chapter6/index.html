@@ -1,0 +1,1247 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="GISTNORTH, Chiang Mai University">
+      
+      
+        <link rel="canonical" href="https://gistnorth.github.io/gistnorth_gee/gee_workshop_chapter6/">
+      
+      
+        <link rel="prev" href="../gee_workshop_chapter5/">
+      
+      
+        <link rel="next" href="../gee_workshop_chapter7/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>บทที่ 6 - Google Earth Engine Workshop (GISTNORTH)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+Thai:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans Thai";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-images-properties" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Google Earth Engine Workshop (GISTNORTH)" class="md-header__button md-logo" aria-label="Google Earth Engine Workshop (GISTNORTH)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Google Earth Engine Workshop (GISTNORTH)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              บทที่ 6
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/gistnorth/gistnorth_gee" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Google Earth Engine Workshop (GISTNORTH)" class="md-nav__button md-logo" aria-label="Google Earth Engine Workshop (GISTNORTH)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Google Earth Engine Workshop (GISTNORTH)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/gistnorth/gistnorth_gee" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    หน้าแรก
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 6
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 6
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-images-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. images properties
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. images properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-map-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Map object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-viuslization" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Viuslization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Filter
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-band-and-band-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Band and band selection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Band and band selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-median-composite-and-select-bands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a median composite and select bands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#band-selection-and-add-to-new-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      Band selection and add to new object
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-band-math" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Band math
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Band math">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculate-ndvi-using-band-math" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculate NDVI using band math
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculate-ndvi-using-normalizeddifference-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculate NDVI using normalizedDifference() method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculate-evi-using-imageexpression-and-band-math" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculate EVI using image.expression() and band math
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-clipping" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Clipping
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 Clipping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clipping-an-image-with-a-polygon" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clipping an image with a polygon
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clipping-an-image-collection-with-a-polygon" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clipping an image collection with a polygon
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-import-data-from-assets" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Import data from assets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-export-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      9 Export data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9 Export data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-export-an-image-to-google-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 Export an image to Google Drive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-export-a-feature-collection-to-google-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2 Export a feature collection to Google Drive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-export-an-image-to-google-earth-engine-assets" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.3 Export an image to Google Earth Engine assets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 8
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 9
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>บทที่ 6</h1>
+
+<h3 id="1-images-properties">1. images properties<a class="headerlink" href="#1-images-properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// 1. images properties</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">]]]);</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">collection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-03-31&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">select</span><span class="p">([</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B2&#39;</span><span class="p">])</span><span class="w"> </span>
+
+<span class="c1">// 2. get properties of the image collection</span>
+<span class="c1">// get image count</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">imageCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Image Count:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">imageCount</span><span class="p">);</span><span class="w"> </span>
+<span class="c1">// get image list</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">imageList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">toList</span><span class="p">(</span><span class="nx">imageCount</span><span class="p">);</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Image List:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">imageList</span><span class="p">);</span><span class="w">  </span>
+<span class="c1">// get first image</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">firstImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="nx">imageList</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mf">0</span><span class="p">));</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;First Image:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">firstImage</span><span class="p">);</span><span class="w"> </span>
+<span class="c1">// get image properties</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">imageProperties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstImage</span><span class="p">.</span><span class="nx">propertyNames</span><span class="p">();</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Image Properties:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">imageProperties</span><span class="p">);</span><span class="w"> </span>
+<span class="c1">// get image bands</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">imageBands</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstImage</span><span class="p">.</span><span class="nx">bandNames</span><span class="p">();</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Image Bands:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">imageBands</span><span class="p">);</span><span class="w">  </span>
+<span class="c1">// get image metadata</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">imageMetadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstImage</span><span class="p">.</span><span class="nx">getInfo</span><span class="p">();</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Image Metadata:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">imageMetadata</span><span class="p">);</span><span class="w">  </span>
+<span class="c1">// get image date</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">imageDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstImage</span><span class="p">.</span><span class="nx">date</span><span class="p">();</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Image Date:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">imageDate</span><span class="p">);</span><span class="w"> </span>
+<span class="c1">// get image geometry</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">imageGeometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstImage</span><span class="p">.</span><span class="nx">geometry</span><span class="p">();</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Image Geometry:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">imageGeometry</span><span class="p">);</span><span class="w"> </span>
+<span class="c1">// get image scale</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">imageScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstImage</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">).</span><span class="nx">projection</span><span class="p">().</span><span class="nx">nominalScale</span><span class="p">();</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Image Scale:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">imageScale</span><span class="p">);</span><span class="w">  </span>
+<span class="c1">// get image projection</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">imageProjection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstImage</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">).</span><span class="nx">projection</span><span class="p">();</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Image Projection:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">imageProjection</span><span class="p">);</span><span class="w"> </span>
+
+<span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">polygon</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B2&#39;</span><span class="p">],</span><span class="w"> </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;Image Collection&#39;</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="2-map-object">2 Map object<a class="headerlink" href="#2-map-object" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// 3. Map object</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">]]]);</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">collection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-03-31&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">)</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">);</span><span class="w"> </span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">collection</span><span class="p">,</span><span class="w">             </span><span class="c1">// eeObject</span>
+<span class="w">  </span><span class="p">{</span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B2&#39;</span><span class="p">],</span><span class="w"> </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">},</span><span class="w"> </span><span class="c1">// visParams</span>
+<span class="w">  </span><span class="s1">&#39;Image Collection&#39;</span><span class="p">,</span><span class="w">      </span><span class="c1">// name</span>
+<span class="w">  </span><span class="kc">true</span><span class="p">,</span><span class="w">                   </span><span class="c1">// shown (hidden by default)</span>
+<span class="w">  </span><span class="mf">0.8</span><span class="w">                      </span><span class="c1">// opacity (80% transparent)</span>
+<span class="p">);</span>
+</code></pre></div>
+<h4 id="3-viuslization">3 Viuslization<a class="headerlink" href="#3-viuslization" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// 4. study area</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">]]]);</span>
+
+<span class="c1">// 5. vector visualization</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s1">&#39;USDOS/LSIB_SIMPLE/2017&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Filter</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="s1">&#39;country_na&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Thailand&#39;</span><span class="p">));</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">countryStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;FF0000&#39;</span><span class="p">,</span><span class="w">            </span><span class="c1">// Red outline</span>
+<span class="w">  </span><span class="nx">fillColor</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;FF000022&#39;</span><span class="p">,</span><span class="w">      </span><span class="c1">// Translucent red fill</span>
+<span class="w">  </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w">                    </span><span class="c1">// 1-pixel wide border</span>
+<span class="p">};</span>
+
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">countries</span><span class="p">,</span><span class="w">                </span><span class="c1">// eeObject</span>
+<span class="w">  </span><span class="nx">countryStyle</span><span class="p">,</span><span class="w">             </span><span class="c1">// visParams</span>
+<span class="w">  </span><span class="s1">&#39;Country Borders&#39;</span><span class="p">,</span><span class="w">        </span><span class="c1">// name</span>
+<span class="w">  </span><span class="kc">false</span><span class="p">,</span><span class="w">                    </span><span class="c1">// shown (hidden by default)</span>
+<span class="w">  </span><span class="mf">1.0</span><span class="w">                       </span><span class="c1">// opacity (fully opaque)</span>
+<span class="p">);</span>
+
+<span class="c1">// 6. ImageCollection visualization</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">countryStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;FF0000&#39;</span><span class="p">,</span><span class="w">            </span><span class="c1">// Red outline</span>
+<span class="w">  </span><span class="nx">fillColor</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;FF000022&#39;</span><span class="p">,</span><span class="w">      </span><span class="c1">// Translucent red fill</span>
+<span class="w">  </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w">                    </span><span class="c1">// 1-pixel wide border</span>
+<span class="p">};</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">collection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-03-31&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">rgbVis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B2&#39;</span><span class="p">],</span><span class="w">  </span><span class="c1">// Use red, green, blue bands</span>
+<span class="w">  </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w">                     </span><span class="c1">// Map pixel values from 0</span>
+<span class="w">  </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">,</span><span class="w">                  </span><span class="c1">// to 3000</span>
+<span class="w">  </span><span class="nx">gamma</span><span class="o">:</span><span class="w"> </span><span class="mf">1.1</span><span class="w">                  </span><span class="c1">// Apply slight gamma correction</span>
+<span class="p">};</span>
+
+<span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">collection</span><span class="p">,</span><span class="w">               </span><span class="c1">// eeObject</span>
+<span class="w">  </span><span class="nx">rgbVis</span><span class="p">,</span><span class="w">                   </span><span class="c1">// visParams</span>
+<span class="w">  </span><span class="s1">&#39;Sentinel-2 RGB&#39;</span><span class="p">,</span><span class="w">         </span><span class="c1">// name</span>
+<span class="w">  </span><span class="kc">true</span><span class="p">,</span><span class="w">                     </span><span class="c1">// shown</span>
+<span class="w">  </span><span class="mf">0.8</span><span class="w">                       </span><span class="c1">// opacity</span>
+<span class="p">);</span>
+
+<span class="c1">// 7. Image visualization</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">dem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s1">&#39;USGS/SRTMGL1_003&#39;</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">demVis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w">                      </span><span class="c1">// lowest elevation (meters)</span>
+<span class="w">  </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">,</span><span class="w">                   </span><span class="c1">// highest elevation (meters)</span>
+<span class="w">  </span><span class="nx">palette</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s1">&#39;0000ff&#39;</span><span class="p">,</span><span class="w">                  </span><span class="c1">// deep water (if below 0)</span>
+<span class="w">    </span><span class="s1">&#39;00ffff&#39;</span><span class="p">,</span><span class="w">                  </span><span class="c1">// sea level</span>
+<span class="w">    </span><span class="s1">&#39;00ff00&#39;</span><span class="p">,</span><span class="w">                  </span><span class="c1">// lowlands</span>
+<span class="w">    </span><span class="s1">&#39;ffff00&#39;</span><span class="p">,</span><span class="w">                  </span><span class="c1">// mid elevations</span>
+<span class="w">    </span><span class="s1">&#39;ff7f00&#39;</span><span class="p">,</span><span class="w">                  </span><span class="c1">// high elevations</span>
+<span class="w">    </span><span class="s1">&#39;ffffff&#39;</span><span class="w">                   </span><span class="c1">// peaks</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">dem</span><span class="p">,</span><span class="w">                     </span><span class="c1">// eeObject</span>
+<span class="w">  </span><span class="nx">demVis</span><span class="p">,</span><span class="w">                  </span><span class="c1">// visParams</span>
+<span class="w">  </span><span class="s1">&#39;SRTM DEM&#39;</span><span class="p">,</span><span class="w">              </span><span class="c1">// name</span>
+<span class="w">  </span><span class="kc">false</span><span class="p">,</span><span class="w">                   </span><span class="c1">// shown (hidden by default)</span>
+<span class="w">  </span><span class="mf">0.5</span><span class="w">                      </span><span class="c1">// opacity (50% transparent)</span>
+<span class="p">);</span>
+</code></pre></div>
+<h3 id="4-filter">4 Filter<a class="headerlink" href="#4-filter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// 8. Filter</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">collection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-03-31&#39;</span><span class="p">)</span><span class="w">   </span><span class="c1">// Filter method by date</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B2&#39;</span><span class="p">],</span><span class="w"> </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;Image Collection&#39;</span><span class="p">);</span>
+
+<span class="c1">// Filter by bounds</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">]]]);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">collection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-03-31&#39;</span><span class="p">)</span><span class="w">   </span><span class="c1">// Filter method by date</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">)</span><span class="w">                    </span><span class="c1">// Filter method by bounds</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">polygon</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B2&#39;</span><span class="p">],</span><span class="w"> </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;Image Collection&#39;</span><span class="p">);</span>
+
+<span class="c1">// Filter by cloudy pixel percentage</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">collection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-03-31&#39;</span><span class="p">)</span><span class="w">   </span><span class="c1">// Filter method by date</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Filter</span><span class="p">.</span><span class="nx">lt</span><span class="p">(</span><span class="s1">&#39;CLOUDY_PIXEL_PERCENTAGE&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">))</span><span class="w">  </span><span class="c1">// Filter method by property</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">)</span><span class="w">                    </span><span class="c1">// Filter method by bounds</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">polygon</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B2&#39;</span><span class="p">],</span><span class="w"> </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;Image Collection&#39;</span><span class="p">);</span>
+
+<span class="c1">// Filter country</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s1">&#39;USDOS/LSIB_SIMPLE/2017&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Filter</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="s1">&#39;country_na&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Thailand&#39;</span><span class="p">));</span><span class="w">  </span><span class="c1">// Filter method by property</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">countries</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">countries</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;red&#39;</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;Country&#39;</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="5-band-and-band-selection">5 Band and band selection<a class="headerlink" href="#5-band-and-band-selection" title="Permanent link">&para;</a></h3>
+<h4 id="create-a-median-composite-and-select-bands">Create a median composite and select bands<a class="headerlink" href="#create-a-median-composite-and-select-bands" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// 9. Create a median composite and select bands</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">]]]);</span>
+
+<span class="c1">// Load the Sentinel-2 ImageCollection and filter by date &amp; ROI</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-02-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-06-28&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span>
+
+<span class="c1">// Create a median composite from the collection</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">composite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">s2</span><span class="p">.</span><span class="nx">median</span><span class="p">();</span>
+
+<span class="c1">// Print band names and image property keys to the Console</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Band names:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">bandNames</span><span class="p">());</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Image property names:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">propertyNames</span><span class="p">());</span>
+
+<span class="c1">// Define visualization parameters</span>
+<span class="c1">//    True Color: Red = B4, Green = B3, Blue = B2</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">trueColorVis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B2&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">min</span><span class="o">:</span><span class="w">   </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">max</span><span class="o">:</span><span class="w">   </span><span class="mf">3000</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">gamma</span><span class="o">:</span><span class="w"> </span><span class="mf">0.5</span>
+<span class="p">};</span>
+
+<span class="c1">// False Color (NIR + Red + Green): NIR = B8, Red = B4, Green = B3</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">falseColorVis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B8&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">min</span><span class="o">:</span><span class="w">   </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">max</span><span class="o">:</span><span class="w">   </span><span class="mf">3000</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">gamma</span><span class="o">:</span><span class="w"> </span><span class="mf">0.5</span>
+<span class="p">};</span>
+
+<span class="c1">// Center the Map on the composite and add the layers</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span><span class="w">  </span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">composite</span><span class="p">,</span><span class="w"> </span><span class="nx">trueColorVis</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;True Color Composite&#39;</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">composite</span><span class="p">,</span><span class="w"> </span><span class="nx">falseColorVis</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;False Color Composite&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="band-selection-and-add-to-new-object">Band selection and add to new object<a class="headerlink" href="#band-selection-and-add-to-new-object" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// 10. Band selection and add to new object</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">]]]);</span>
+
+<span class="c1">// Load the Sentinel-2 ImageCollection and filter by date &amp; ROI</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-02-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-06-28&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span>
+
+<span class="c1">// Create a median composite from the collection</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">composite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">s2</span><span class="p">.</span><span class="nx">median</span><span class="p">();</span>
+
+<span class="c1">// Select single bands</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">band4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">band3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B3&#39;</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">band2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B2&#39;</span><span class="p">);</span>
+
+<span class="c1">// rename bands</span>
+<span class="nx">band4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">band4</span><span class="p">.</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;Red&#39;</span><span class="p">);</span>
+<span class="nx">band3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">band3</span><span class="p">.</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;Green&#39;</span><span class="p">);</span>
+<span class="nx">band2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">band2</span><span class="p">.</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;Blue&#39;</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">rgbSingleBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">band4</span><span class="p">.</span><span class="nx">addBands</span><span class="p">(</span><span class="nx">band3</span><span class="p">).</span><span class="nx">addBands</span><span class="p">(</span><span class="nx">band2</span><span class="p">);</span>
+
+<span class="c1">// Select multiple bands name</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">rgbMultiBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">([</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B2&#39;</span><span class="p">]);</span>
+
+<span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">polygon</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">rgbSingleBand</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;RGB select from single band&#39;</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">rgbMultiBand</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;RGB select from multiple band&#39;</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="6-band-math">6 Band math<a class="headerlink" href="#6-band-math" title="Permanent link">&para;</a></h3>
+<h4 id="calculate-ndvi-using-band-math">Calculate NDVI using band math<a class="headerlink" href="#calculate-ndvi-using-band-math" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// 11. Calculate NDVI using band math</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">]]]);</span><span class="w"> </span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-02-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-06-28&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span>
+
+<span class="c1">// Create a median composite from the collection</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">composite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">s2</span><span class="p">.</span><span class="nx">median</span><span class="p">();</span>
+<span class="c1">// Select bands for NDVI calculation</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">nirBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B8&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// NIR band</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">redBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// Red band</span>
+
+<span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">polygon</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">composite</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B2&#39;</span><span class="p">],</span><span class="w"> </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;RGB Composite&#39;</span><span class="p">);</span>
+
+<span class="c1">// Calculate NDVI</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ndvi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">nirBand</span><span class="p">.</span><span class="nx">subtract</span><span class="p">(</span><span class="nx">redBand</span><span class="p">).</span><span class="nx">divide</span><span class="p">(</span><span class="nx">nirBand</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">redBand</span><span class="p">)).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">);</span>
+
+<span class="c1">// Add NDVI to the composite</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">compositeWithNDVI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">addBands</span><span class="p">(</span><span class="nx">ndvi</span><span class="p">);</span>
+
+<span class="c1">// Print NDVI image</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;NDVI Image:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">compositeWithNDVI</span><span class="p">);</span>
+
+<span class="c1">// Define visualization parameters for NDVI</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ndviVis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">palette</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;white&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="c1">// Add NDVI layer to the map</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">compositeWithNDVI</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">),</span><span class="w"> </span><span class="nx">ndviVis</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;NDVI&#39;</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="calculate-ndvi-using-normalizeddifference-method">Calculate NDVI using normalizedDifference() method<a class="headerlink" href="#calculate-ndvi-using-normalizeddifference-method" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// 12. Calculate NDVI using normalizedDifference() method</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">]]]);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-02-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-06-28&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span>
+<span class="c1">// Create a median composite from the collection</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">composite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">s2</span><span class="p">.</span><span class="nx">median</span><span class="p">();</span>
+<span class="c1">// Select bands for NDVI calculation</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">nirBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B8&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// NIR band</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">redBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// Red band</span>
+<span class="c1">// normalizedDifference() method</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ndvi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">normalizedDifference</span><span class="p">([</span><span class="s1">&#39;B8&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B4&#39;</span><span class="p">]).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">);</span>
+<span class="c1">// Add NDVI to the composite</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">compositeWithNDVI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">addBands</span><span class="p">(</span><span class="nx">ndvi</span><span class="p">);</span>
+<span class="c1">// Print NDVI image</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;NDVI Image:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">compositeWithNDVI</span><span class="p">);</span>
+<span class="c1">// Define visualization parameters for NDVI</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ndviVis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">palette</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;white&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="p">]</span>
+<span class="p">};</span>
+<span class="c1">// Add NDVI layer to the map</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">compositeWithNDVI</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">),</span><span class="w"> </span><span class="nx">ndviVis</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;NDVI&#39;</span><span class="p">);</span><span class="w">    </span>
+</code></pre></div>
+<h4 id="calculate-evi-using-imageexpression-and-band-math">Calculate EVI using image.expression() and band math<a class="headerlink" href="#calculate-evi-using-imageexpression-and-band-math" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// 13. Calculate EVI using image.expression() and band math</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">]]]);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-02-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-06-28&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span>
+<span class="c1">// Create a median composite from the collection</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">composite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">s2</span><span class="p">.</span><span class="nx">median</span><span class="p">();</span>
+
+<span class="c1">// Select bands for EVI calculation</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">nirBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B8&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// NIR band</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">redBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// Red band</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">blueBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B2&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// Blue band</span>
+
+<span class="c1">// Calculate EVI with image.expression</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">evi_exp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">expression</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;2.5 * ((NIR - RED) / (NIR + 6 * RED - 7.5 * BLUE + 1))&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;NIR&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">nirBand</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;RED&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">redBand</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;BLUE&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">blueBand</span>
+<span class="p">}).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;EVIexp&#39;</span><span class="p">);</span>
+
+<span class="c1">// Calculate EVI with band math</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">evi_funct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">nirBand</span><span class="p">.</span><span class="nx">subtract</span><span class="p">(</span><span class="nx">redBand</span><span class="p">).</span><span class="nx">divide</span><span class="p">(</span><span class="nx">nirBand</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">redBand</span><span class="p">.</span><span class="nx">multiply</span><span class="p">(</span><span class="mf">6</span><span class="p">)).</span><span class="nx">subtract</span><span class="p">(</span><span class="nx">blueBand</span><span class="p">.</span><span class="nx">multiply</span><span class="p">(</span><span class="mf">7.5</span><span class="p">)).</span><span class="nx">add</span><span class="p">(</span><span class="mf">1</span><span class="p">)).</span><span class="nx">multiply</span><span class="p">(</span><span class="mf">2.5</span><span class="p">).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;EVIfunct&#39;</span><span class="p">);</span>
+
+<span class="c1">// Add EVI to the composite</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">compositeWithEVIexp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">addBands</span><span class="p">(</span><span class="nx">evi_exp</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">compositeWithEVIfunct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">addBands</span><span class="p">(</span><span class="nx">evi_funct</span><span class="p">);</span>
+
+<span class="c1">// Print EVI image</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;EVI Image:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">compositeWithEVIexp</span><span class="p">);</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;EVI Image:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">compositeWithEVIfunct</span><span class="p">);</span>
+<span class="c1">// Define visualization parameters for EVI</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">eviVis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">palette</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;white&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="p">]</span>
+<span class="p">};</span>
+<span class="c1">// Add EVI layer to the map </span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">compositeWithEVIexp</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;EVIexp&#39;</span><span class="p">),</span><span class="w"> </span><span class="nx">eviVis</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;EVI&#39;</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">compositeWithEVIfunct</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;EVIfunct&#39;</span><span class="p">),</span><span class="w"> </span><span class="nx">eviVis</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;EVI&#39;</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="7-clipping">7 Clipping<a class="headerlink" href="#7-clipping" title="Permanent link">&para;</a></h3>
+<h4 id="clipping-an-image-with-a-polygon">Clipping an image with a polygon<a class="headerlink" href="#clipping-an-image-with-a-polygon" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// 14. Clipping an image with a polygon</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.39692831218161</span><span class="p">,</span><span class="w"> </span><span class="mf">18.837049183879376</span><span class="p">],</span>
+<span class="w">          </span><span class="p">[</span><span class="mf">98.39692831218161</span><span class="p">,</span><span class="w"> </span><span class="mf">18.66149307399751</span><span class="p">],</span>
+<span class="w">          </span><span class="p">[</span><span class="mf">99.62739706218161</span><span class="p">,</span><span class="w"> </span><span class="mf">18.66149307399751</span><span class="p">],</span>
+<span class="w">          </span><span class="p">[</span><span class="mf">99.62739706218161</span><span class="p">,</span><span class="w"> </span><span class="mf">18.837049183879376</span><span class="p">]]]);</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">dem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s1">&#39;USGS/SRTMGL1_003&#39;</span><span class="p">);</span>
+
+<span class="c1">// Clip the DEM with polygon</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">clippedDem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">dem</span><span class="p">.</span><span class="nx">clip</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">polygon</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">clippedDem</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">palette</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;#a6611a&#39;</span><span class="p">,</span><span class="s1">&#39;#dfc27d&#39;</span><span class="p">,</span><span class="s1">&#39;#f5f5f5&#39;</span><span class="p">,</span><span class="s1">&#39;#80cdc1&#39;</span><span class="p">,</span><span class="s1">&#39;#018571&#39;</span><span class="p">],</span><span class="w"> </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">250</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;Clipped DEM&#39;</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="clipping-an-image-collection-with-a-polygon">Clipping an image collection with a polygon<a class="headerlink" href="#clipping-an-image-collection-with-a-polygon" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// 15. Clipping an image collection with a polygon</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.39692831218161</span><span class="p">,</span><span class="w"> </span><span class="mf">18.837049183879376</span><span class="p">],</span>
+<span class="w">          </span><span class="p">[</span><span class="mf">98.39692831218161</span><span class="p">,</span><span class="w"> </span><span class="mf">18.66149307399751</span><span class="p">],</span>
+<span class="w">          </span><span class="p">[</span><span class="mf">99.62739706218161</span><span class="p">,</span><span class="w"> </span><span class="mf">18.66149307399751</span><span class="p">],</span>
+<span class="w">          </span><span class="p">[</span><span class="mf">99.62739706218161</span><span class="p">,</span><span class="w"> </span><span class="mf">18.837049183879376</span><span class="p">]]]);</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">clipImage</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">image</span><span class="p">.</span><span class="nx">clip</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">clippedComposite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-02-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-06-28&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">clipImage</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">median</span><span class="p">()</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">polygon</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">clippedComposite</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B2&#39;</span><span class="p">],</span><span class="w"> </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">500</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;Clipped Composite&#39;</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="8-import-data-from-assets">8 Import data from assets<a class="headerlink" href="#8-import-data-from-assets" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// 16. Import data from assets</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">cm_province</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s2">&quot;projects/ee-sakda-451407/assets/cm_province_4326&quot;</span><span class="p">);</span>
+
+<span class="c1">// define visualization parameters</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">visParams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span>
+<span class="p">};</span>
+
+<span class="nb">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">cm_province</span><span class="p">);</span>
+<span class="nb">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">cm_province</span><span class="p">,</span><span class="w"> </span><span class="nx">visParams</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Chiang Mai Province&#39;</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="9-export-data">9 Export data<a class="headerlink" href="#9-export-data" title="Permanent link">&para;</a></h3>
+<h4 id="91-export-an-image-to-google-drive">9.1 Export an image to Google Drive<a class="headerlink" href="#91-export-an-image-to-google-drive" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// 17. Export an image to Google Drive</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">]]]);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-02-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-06-28&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">composite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">s2</span><span class="p">.</span><span class="nx">median</span><span class="p">();</span>
+<span class="c1">// Select bands for NDVI calculation</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">nirBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B8&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// NIR band</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">redBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// Red band</span>
+<span class="c1">// Calculate NDVI </span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ndvi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">normalizedDifference</span><span class="p">([</span><span class="s1">&#39;B8&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B4&#39;</span><span class="p">]).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">);</span>
+<span class="c1">// Add NDVI to the composite</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">compositeWithNDVI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">addBands</span><span class="p">(</span><span class="nx">ndvi</span><span class="p">);</span>
+<span class="c1">// Export the NDVI image to Google Drive</span>
+<span class="nx">Export</span><span class="p">.</span><span class="nx">image</span><span class="p">.</span><span class="nx">toDrive</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="nx">compositeWithNDVI</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NDVI_Export&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">scale</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">region</span><span class="o">:</span><span class="w"> </span><span class="nx">polygon</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">maxPixels</span><span class="o">:</span><span class="w"> </span><span class="mf">1e13</span>
+<span class="p">});</span>
+</code></pre></div>
+<h4 id="92-export-a-feature-collection-to-google-drive">9.2 Export a feature collection to Google Drive<a class="headerlink" href="#92-export-a-feature-collection-to-google-drive" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// 18. Export a feature collection to Google Drive</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">countries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s1">&#39;USDOS/LSIB_SIMPLE/2017&#39;</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">thailandBorder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">countries</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Filter</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="s1">&#39;country_na&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Thailand&#39;</span><span class="p">));</span>
+<span class="c1">// Export the feature collection to Google Drive</span>
+<span class="nx">Export</span><span class="p">.</span><span class="nx">table</span><span class="p">.</span><span class="nx">toDrive</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">collection</span><span class="o">:</span><span class="w"> </span><span class="nx">thailandBorder</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CM_Province_Export&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">fileFormat</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SHP&#39;</span>
+<span class="p">});</span>
+</code></pre></div>
+<h4 id="93-export-an-image-to-google-earth-engine-assets">9.3 Export an image to Google Earth Engine assets<a class="headerlink" href="#93-export-an-image-to-google-earth-engine-assets" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// 19. Export an image to Google Earth Engine assets</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">]]]);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-02-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-06-28&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">composite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">s2</span><span class="p">.</span><span class="nx">median</span><span class="p">();</span>
+<span class="c1">// Select bands for NDVI calculation</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">nirBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B8&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// NIR band</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">redBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// Red band</span>
+<span class="c1">// Calculate NDVI</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ndvi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">normalizedDifference</span><span class="p">([</span><span class="s1">&#39;B8&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B4&#39;</span><span class="p">]).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">);</span>
+<span class="c1">// Add NDVI to the composite</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">compositeWithNDVI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">addBands</span><span class="p">(</span><span class="nx">ndvi</span><span class="p">);</span>
+<span class="c1">// Export the NDVI image to Google Earth Engine assets</span>
+<span class="nx">Export</span><span class="p">.</span><span class="nx">image</span><span class="p">.</span><span class="nx">toAsset</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="nx">compositeWithNDVI</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NDVI_Export_Asset&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">assetId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;projects/your_project/assets/NDVI_Export_Asset&#39;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Change &#39;your_project&#39; to your project ID</span>
+<span class="w">  </span><span class="nx">scale</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">region</span><span class="o">:</span><span class="w"> </span><span class="nx">polygon</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">maxPixels</span><span class="o">:</span><span class="w"> </span><span class="mf">1e13</span>
+<span class="p">});</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.sections", "search.highlight", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
