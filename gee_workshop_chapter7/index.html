@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#7-ui-elements" class="md-skip">
+        <a href="#71-create-ui-panel" class="md-skip">
           Skip to content
         </a>
       
@@ -432,16 +432,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#7-ui-elements" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. UI Elements
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7. UI Elements">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#71-create-ui-panel" class="md-nav__link">
     <span class="md-ellipsis">
       7.1 Create UI Panel
@@ -449,8 +439,8 @@
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#72-add-layers" class="md-nav__link">
     <span class="md-ellipsis">
       7.2 Add layers
@@ -458,8 +448,8 @@
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#73-add-checkboxes" class="md-nav__link">
     <span class="md-ellipsis">
       7.3 Add checkboxes
@@ -467,18 +457,13 @@
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#74-add-chart-buttons" class="md-nav__link">
     <span class="md-ellipsis">
       7.4 Add chart buttons
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -555,8 +540,7 @@
 
   <h1>บทที่ 7</h1>
 
-<h3 id="7-ui-elements">7. UI Elements<a class="headerlink" href="#7-ui-elements" title="Permanent link">&para;</a></h3>
-<h4 id="71-create-ui-panel">7.1 Create UI Panel<a class="headerlink" href="#71-create-ui-panel" title="Permanent link">&para;</a></h4>
+<h3 id="71-create-ui-panel">7.1 Create UI Panel<a class="headerlink" href="#71-create-ui-panel" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1">// Create the left “layer” panel</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">layerPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Panel</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">layout</span><span class="o">:</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Panel</span><span class="p">.</span><span class="nx">Layout</span><span class="p">.</span><span class="nx">flow</span><span class="p">(</span><span class="s1">&#39;vertical&#39;</span><span class="p">),</span>
@@ -598,7 +582,7 @@
 <span class="nx">ui</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
 <span class="nx">ui</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">root</span><span class="p">);</span>
 </code></pre></div>
-<h4 id="72-add-layers">7.2 Add layers<a class="headerlink" href="#72-add-layers" title="Permanent link">&para;</a></h4>
+<h3 id="72-add-layers">7.2 Add layers<a class="headerlink" href="#72-add-layers" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1">// Add layers</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
 <span class="w">    </span><span class="p">[[[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">],</span>
@@ -690,7 +674,7 @@
 <span class="c1">// Set center the map on the polygon</span>
 <span class="nx">mapPanel</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span><span class="w"> </span>
 </code></pre></div>
-<h4 id="73-add-checkboxes">7.3 Add checkboxes<a class="headerlink" href="#73-add-checkboxes" title="Permanent link">&para;</a></h4>
+<h3 id="73-add-checkboxes">7.3 Add checkboxes<a class="headerlink" href="#73-add-checkboxes" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1">// Add checkboxes to the layer panel</span>
 <span class="c1">// Checkbox for NDVI</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">ndviCheckbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Checkbox</span><span class="p">({</span>
@@ -740,7 +724,7 @@
 <span class="c1">// Add the checkbox to the layer panel</span>
 <span class="nx">layerPanel</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">polylineCheckbox</span><span class="p">);</span>
 </code></pre></div>
-<h4 id="74-add-chart-buttons">7.4 Add chart buttons<a class="headerlink" href="#74-add-chart-buttons" title="Permanent link">&para;</a></h4>
+<h3 id="74-add-chart-buttons">7.4 Add chart buttons<a class="headerlink" href="#74-add-chart-buttons" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1">// Add a button to the chart panel</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">chartButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Button</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Show NDVI Chart&#39;</span><span class="p">,</span>
