@@ -1,0 +1,847 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="GISTNORTH, Chiang Mai University">
+      
+      
+        <link rel="canonical" href="https://gistnorth.github.io/gistnorth_gee/gee_workshop_chapter7/">
+      
+      
+        <link rel="prev" href="../gee_workshop_chapter6/">
+      
+      
+        <link rel="next" href="../gee_workshop_chapter8/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>บทที่ 7 - Google Earth Engine Workshop (GISTNORTH)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+Thai:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans Thai";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#7-ui-elements" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Google Earth Engine Workshop (GISTNORTH)" class="md-header__button md-logo" aria-label="Google Earth Engine Workshop (GISTNORTH)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Google Earth Engine Workshop (GISTNORTH)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              บทที่ 7
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/gistnorth/gistnorth_gee" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Google Earth Engine Workshop (GISTNORTH)" class="md-nav__button md-logo" aria-label="Google Earth Engine Workshop (GISTNORTH)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Google Earth Engine Workshop (GISTNORTH)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/gistnorth/gistnorth_gee" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    หน้าแรก
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 7
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 7
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#7-ui-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. UI Elements
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. UI Elements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-create-ui-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Create UI Panel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-add-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Add layers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-add-checkboxes" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 Add checkboxes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-add-chart-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4 Add chart buttons
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 8
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gee_workshop_chapter9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    บทที่ 9
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>บทที่ 7</h1>
+
+<h3 id="7-ui-elements">7. UI Elements<a class="headerlink" href="#7-ui-elements" title="Permanent link">&para;</a></h3>
+<h4 id="71-create-ui-panel">7.1 Create UI Panel<a class="headerlink" href="#71-create-ui-panel" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Create the left “layer” panel</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">layerPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Panel</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">layout</span><span class="o">:</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Panel</span><span class="p">.</span><span class="nx">Layout</span><span class="p">.</span><span class="nx">flow</span><span class="p">(</span><span class="s1">&#39;vertical&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">style</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;300px&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">backgroundColor</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;#fff&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">padding</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;8px&#39;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">layerPanel</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">Label</span><span class="p">(</span><span class="s1">&#39;Layers&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">fontWeight</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bold&#39;</span><span class="p">}));</span>
+
+<span class="c1">// Create the centre map panel</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">mapPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nb">Map</span><span class="p">();</span>
+<span class="nx">mapPanel</span><span class="p">.</span><span class="nx">setControlVisibility</span><span class="p">({</span><span class="nx">all</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">zoomControl</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">});</span>
+<span class="nx">mapPanel</span><span class="p">.</span><span class="nx">style</span><span class="p">().</span><span class="nx">set</span><span class="p">({</span><span class="nx">stretch</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;both&#39;</span><span class="p">});</span><span class="w">  </span><span class="c1">// fill available space</span>
+<span class="nx">mapPanel</span><span class="p">.</span><span class="nx">setCenter</span><span class="p">(</span><span class="mf">100.5</span><span class="p">,</span><span class="w"> </span><span class="mf">13.7</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">);</span>
+
+<span class="c1">// Create the right “chart” panel</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">chartPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Panel</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">layout</span><span class="o">:</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Panel</span><span class="p">.</span><span class="nx">Layout</span><span class="p">.</span><span class="nx">flow</span><span class="p">(</span><span class="s1">&#39;vertical&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">style</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;300px&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">backgroundColor</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;#fff&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">padding</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;8px&#39;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">chartPanel</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">Label</span><span class="p">(</span><span class="s1">&#39;Chart&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">fontWeight</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bold&#39;</span><span class="p">}));</span>
+
+<span class="c1">// Combine all three in a horizontal root panel</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Panel</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">layout</span><span class="o">:</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Panel</span><span class="p">.</span><span class="nx">Layout</span><span class="p">.</span><span class="nx">flow</span><span class="p">(</span><span class="s1">&#39;horizontal&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">style</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">stretch</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;both&#39;</span><span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">root</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">layerPanel</span><span class="p">);</span>
+<span class="nx">root</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">mapPanel</span><span class="p">);</span>
+<span class="nx">root</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">chartPanel</span><span class="p">);</span>
+
+<span class="c1">// Render</span>
+<span class="nx">ui</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+<span class="nx">ui</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">root</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="72-add-layers">7.2 Add layers<a class="headerlink" href="#72-add-layers" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Add layers</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polygon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[[[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">98.9171009716561</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.68557890893041</span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span><span class="mf">99.0873890575936</span><span class="p">,</span><span class="w"> </span><span class="mf">18.815619476862654</span><span class="p">]]]);</span>
+<span class="c1">// convert polygon to polyline</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polyline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">polygon</span><span class="p">.</span><span class="nx">bounds</span><span class="p">().</span><span class="nx">coordinates</span><span class="p">().</span><span class="nx">get</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+
+<span class="c1">// Clip function</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">clipImage</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">image</span><span class="p">.</span><span class="nx">clip</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Calculate NDVI function</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">calculateNDVI</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">ndvi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">image</span><span class="p">.</span><span class="nx">normalizedDifference</span><span class="p">([</span><span class="s1">&#39;B8&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B4&#39;</span><span class="p">]).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">image</span><span class="p">.</span><span class="nx">addBands</span><span class="p">(</span><span class="nx">ndvi</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Create a polyline feature</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polylineFeature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">Feature</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">LineString</span><span class="p">(</span><span class="nx">polyline</span><span class="p">),</span><span class="w"> </span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Polygon Boundary&#39;</span><span class="p">});</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2025-02-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2025-06-28&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">polygon</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">clipImage</span><span class="p">)</span>
+<span class="w">           </span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">calculateNDVI</span><span class="p">);</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">composite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">s2</span><span class="p">.</span><span class="nx">median</span><span class="p">();</span>
+
+<span class="c1">// Select bands for NDVI calculation</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">nirBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B8&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// NIR band</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">redBand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// Red band</span>
+
+<span class="c1">// Calculate NDVI</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ndvi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">normalizedDifference</span><span class="p">([</span><span class="s1">&#39;B8&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B4&#39;</span><span class="p">]).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">);</span>
+
+<span class="c1">// Add NDVI to the composite</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">compositeWithNDVI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">composite</span><span class="p">.</span><span class="nx">addBands</span><span class="p">(</span><span class="nx">ndvi</span><span class="p">);</span>
+
+<span class="c1">// Define visualization parameters for NDVI</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ndviVis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">palette</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;white&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="c1">// Define visualization parameters for the composite</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">compositeVis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">bands</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;B2&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">2700</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">gamma</span><span class="o">:</span><span class="w"> </span><span class="mf">0.5</span>
+<span class="p">};</span>
+
+<span class="c1">// Create an NDVI layer</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ndviLayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nb">Map</span><span class="p">.</span><span class="nx">Layer</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">compositeWithNDVI</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">  </span><span class="nx">ndviVis</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="s1">&#39;NDVI&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="mf">0.9</span>
+<span class="p">);</span>
+
+<span class="c1">// Add the NDVI layer to the map</span>
+<span class="nx">mapPanel</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">ndviLayer</span><span class="p">);</span>
+
+<span class="c1">// Add the polyline feature to the map</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polylineLayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nb">Map</span><span class="p">.</span><span class="nx">Layer</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">polylineFeature</span><span class="p">.</span><span class="nx">geometry</span><span class="p">(),</span><span class="w"> </span>
+<span class="w">  </span><span class="p">{</span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">},</span><span class="w"> </span>
+<span class="w">  </span><span class="s1">&#39;Polygon Boundary&#39;</span>
+<span class="p">);</span>
+
+<span class="c1">// Add the polyline layer to the map</span>
+<span class="nx">mapPanel</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">polylineLayer</span><span class="p">);</span>
+
+<span class="c1">// Create a true color layer</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">trueColorLayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nb">Map</span><span class="p">.</span><span class="nx">Layer</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">composite</span><span class="p">,</span><span class="w"> </span><span class="nx">compositeVis</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="s1">&#39;True Color Composite&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="mf">0.9</span>
+<span class="p">);</span>
+
+<span class="c1">// Add the true color layer to the map</span>
+<span class="nx">mapPanel</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">trueColorLayer</span><span class="p">);</span>
+
+<span class="c1">// Set center the map on the polygon</span>
+<span class="nx">mapPanel</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">polygon</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+<h4 id="73-add-checkboxes">7.3 Add checkboxes<a class="headerlink" href="#73-add-checkboxes" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Add checkboxes to the layer panel</span>
+<span class="c1">// Checkbox for NDVI</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ndviCheckbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Checkbox</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NDVI&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">onChange</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">checked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">checked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">mapPanel</span><span class="p">.</span><span class="nx">layers</span><span class="p">().</span><span class="nx">add</span><span class="p">(</span><span class="nx">ndviLayer</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">mapPanel</span><span class="p">.</span><span class="nx">layers</span><span class="p">().</span><span class="nx">remove</span><span class="p">(</span><span class="nx">ndviLayer</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Add the checkbox to the layer panel</span>
+<span class="nx">layerPanel</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">ndviCheckbox</span><span class="p">);</span>
+
+<span class="c1">// Checkbox for True Color</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">trueColorCheckbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Checkbox</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;True Color&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">onChange</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">checked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">checked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">mapPanel</span><span class="p">.</span><span class="nx">layers</span><span class="p">().</span><span class="nx">add</span><span class="p">(</span><span class="nx">trueColorLayer</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">mapPanel</span><span class="p">.</span><span class="nx">layers</span><span class="p">().</span><span class="nx">remove</span><span class="p">(</span><span class="nx">trueColorLayer</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Add the checkbox to the layer panel</span>
+<span class="nx">layerPanel</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">trueColorCheckbox</span><span class="p">);</span>
+
+<span class="c1">// Checkbox for Polygon Boundary</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">polylineCheckbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Checkbox</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Polygon Boundary&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">onChange</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">checked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">checked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">mapPanel</span><span class="p">.</span><span class="nx">layers</span><span class="p">().</span><span class="nx">add</span><span class="p">(</span><span class="nx">polylineLayer</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">mapPanel</span><span class="p">.</span><span class="nx">layers</span><span class="p">().</span><span class="nx">remove</span><span class="p">(</span><span class="nx">polylineLayer</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Add the checkbox to the layer panel</span>
+<span class="nx">layerPanel</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">polylineCheckbox</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="74-add-chart-buttons">7.4 Add chart buttons<a class="headerlink" href="#74-add-chart-buttons" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Add a button to the chart panel</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">chartButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Button</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Show NDVI Chart&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">onClick</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Create a chart for NDVI</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">chart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Chart</span><span class="p">.</span><span class="nx">image</span><span class="p">.</span><span class="nx">histogram</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="nx">compositeWithNDVI</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">region</span><span class="o">:</span><span class="w"> </span><span class="nx">polygon</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">scale</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">minBucketWidth</span><span class="o">:</span><span class="w"> </span><span class="mf">0.01</span>
+<span class="w">    </span><span class="p">}).</span><span class="nx">setOptions</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NDVI Histogram&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">hAxis</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NDVI&#39;</span><span class="p">},</span>
+<span class="w">      </span><span class="nx">vAxis</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Frequency&#39;</span><span class="p">},</span>
+<span class="w">      </span><span class="nx">lineWidth</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">pointSize</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="c1">// Add the chart to the chart panel</span>
+<span class="w">    </span><span class="nx">chartPanel</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">chart</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Add the button to the chart panel</span>
+<span class="nx">chartPanel</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">chartButton</span><span class="p">);</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">timeSeriesButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Button</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Show NDVI Time Series&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">onClick</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Create a time series chart for NDVI</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">timeSeriesChart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ui</span><span class="p">.</span><span class="nx">Chart</span><span class="p">.</span><span class="nx">image</span><span class="p">.</span><span class="nx">series</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">imageCollection</span><span class="o">:</span><span class="w"> </span><span class="nx">s2</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">region</span><span class="o">:</span><span class="w"> </span><span class="nx">polygon</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">scale</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">xProperty</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;system:time_start&#39;</span>
+<span class="w">    </span><span class="p">}).</span><span class="nx">setOptions</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NDVI Time Series&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">vAxis</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NDVI&#39;</span><span class="p">},</span>
+<span class="w">      </span><span class="nx">lineWidth</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">pointSize</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="c1">// Add the chart to the chart panel</span>
+<span class="w">    </span><span class="nx">chartPanel</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">timeSeriesChart</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Add the time series button to the chart panel</span>
+<span class="nx">chartPanel</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">timeSeriesButton</span><span class="p">);</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.sections", "search.highlight", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
