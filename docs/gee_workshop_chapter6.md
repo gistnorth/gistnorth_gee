@@ -1,5 +1,5 @@
 
-### 1. images properties
+### 6.1 images properties
 ```javascript
 
 // 1. images properties
@@ -50,7 +50,7 @@ Map.centerObject(polygon, 10);
 Map.addLayer(collection, {bands: ['B4', 'B3', 'B2'], min: 0, max: 3000}, 'Image Collection');
 ```
 
-#### 2 Map object
+### 6.2 Map object
 ```javascript
 // 3. Map object
 var polygon = ee.Geometry.Polygon(
@@ -73,7 +73,7 @@ Map.addLayer(
 
 ```
 
-#### 3 Viuslization
+### 6.3 Viuslization
 ```javascript
 // 4. study area
 var polygon = ee.Geometry.Polygon(
@@ -151,7 +151,7 @@ Map.addLayer(
 
 ```
 
-### 4 Filter  
+### 6.4 Filter  
 ```javascript
 // 8. Filter
 var collection = ee.ImageCollection('COPERNICUS/S2')
@@ -185,8 +185,8 @@ Map.centerObject(countries, 10);
 Map.addLayer(countries, {color: 'red'}, 'Country');
 ```
 
-### 5 Band and band selection
-#### Create a median composite and select bands
+### 6.5 Band and band selection
+#### 1.Create a median composite and select bands
 ```javascript
 // 9. Create a median composite and select bands
 var polygon = ee.Geometry.Polygon(
@@ -230,7 +230,7 @@ Map.addLayer(composite, trueColorVis,  'True Color Composite');
 Map.addLayer(composite, falseColorVis, 'False Color Composite', false, 0.8);
 
 ```
-#### Band selection and add to new object
+#### 2.Band selection and add to new object
 ```javascript
 
 // 10. Band selection and add to new object
@@ -267,9 +267,9 @@ Map.addLayer(rgbSingleBand, {min: 0, max: 3000}, 'RGB select from single band');
 Map.addLayer(rgbMultiBand, {min: 0, max: 3000}, 'RGB select from multiple band');
 ```
 
-### 6 Band math
+### 6.6 Band math
 
-#### Calculate NDVI using band math
+#### 1.Calculate NDVI using band math
 ```javascript
 // 11. Calculate NDVI using band math
 var polygon = ee.Geometry.Polygon(
@@ -310,7 +310,7 @@ var ndviVis = {
 // Add NDVI layer to the map
 Map.addLayer(compositeWithNDVI.select('NDVI'), ndviVis, 'NDVI');
 ```
-#### Calculate NDVI using normalizedDifference() method
+#### 2.Calculate NDVI using normalizedDifference() method
 ```javascript
 // 12. Calculate NDVI using normalizedDifference() method
 var polygon = ee.Geometry.Polygon(
@@ -341,7 +341,7 @@ var ndviVis = {
 // Add NDVI layer to the map
 Map.addLayer(compositeWithNDVI.select('NDVI'), ndviVis, 'NDVI');    
 ```
-#### Calculate EVI using image.expression() and band math
+#### 3.Calculate EVI using image.expression() and band math
 ```javascript
 // 13. Calculate EVI using image.expression() and band math
 var polygon = ee.Geometry.Polygon(
@@ -389,8 +389,8 @@ Map.addLayer(compositeWithEVIexp.select('EVIexp'), eviVis, 'EVI');
 Map.addLayer(compositeWithEVIfunct.select('EVIfunct'), eviVis, 'EVI');
 ```
 
-### 7 Clipping
-#### Clipping an image with a polygon
+### 6.7 Clipping
+#### 1.Clipping an image with a polygon
 ```javascript
 // 14. Clipping an image with a polygon
 var polygon = ee.Geometry.Polygon(
@@ -406,7 +406,7 @@ var clippedDem = dem.clip(polygon);
 Map.centerObject(polygon, 10);
 Map.addLayer(clippedDem, {palette: ['#a6611a','#dfc27d','#f5f5f5','#80cdc1','#018571'], min: 250, max: 1000}, 'Clipped DEM');
 ```
-#### Clipping an image collection with a polygon
+#### 2.Clipping an image collection with a polygon
 ```javascript 
 // 15. Clipping an image collection with a polygon
 var polygon = ee.Geometry.Polygon(
@@ -428,7 +428,7 @@ Map.addLayer(clippedComposite, {bands: ['B4', 'B3', 'B2'], min: 500, max: 3000},
 
 ```
 
-### 8 Import data from assets
+### 6.8 Import data from assets
 ```javascript
 // 16. Import data from assets
 var cm_province = ee.FeatureCollection("projects/ee-sakda-451407/assets/cm_province_4326");
@@ -443,8 +443,8 @@ Map.centerObject(cm_province);
 Map.addLayer(cm_province, visParams, 'Chiang Mai Province');
 ```
 
-### 9 Export data
-#### 9.1 Export an image to Google Drive
+### 6.9 Export data
+#### 1.Export an image to Google Drive
 ```javascript
 // 17. Export an image to Google Drive
 var polygon = ee.Geometry.Polygon(
@@ -472,7 +472,7 @@ Export.image.toDrive({
   maxPixels: 1e13
 });
 ```
-#### 9.2 Export a feature collection to Google Drive
+#### 2.Export a feature collection to Google Drive
 ```javascript
 // 18. Export a feature collection to Google Drive
 var countries = ee.FeatureCollection('USDOS/LSIB_SIMPLE/2017');
@@ -485,7 +485,7 @@ Export.table.toDrive({
 });
 ```
 
-#### 9.3 Export an image to Google Earth Engine assets
+#### 3.Export an image to Google Earth Engine assets
 ```javascript
 // 19. Export an image to Google Earth Engine assets
 var polygon = ee.Geometry.Polygon(

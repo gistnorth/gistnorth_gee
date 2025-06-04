@@ -1,8 +1,8 @@
-### Flood Detection using Sentinel-1 SAR Data
+### 9.1 Flood Detection using Sentinel-1 SAR Data
 
 Credit: [UN-SPIDER](https://www.un-spider.org/advisory-support/recommended-practices/recommended-practice-flood-mapping/step-by-step)
 
-#### กำหนดพื้นที่ศึกษา (Region of Interest)
+#### 1.กำหนดพื้นที่ศึกษา (Region of Interest)
 ```javascript
 // 1. Define region of interest (adjust coordinates as needed)
 var geometry = ee.Geometry.Polygon(
@@ -14,7 +14,7 @@ var geometry = ee.Geometry.Polygon(
 // 2. Define the area of interest as a FeatureCollection
 var aoi = ee.FeatureCollection(geometry);
 ```
-#### กำหนดช่วงเวลาที่สนใจ
+#### 2.กำหนดช่วงเวลาที่สนใจ
 ```javascript
 // 3. Define date ranges for before and after flood events
 var before_start = '2024-01-01';
@@ -22,7 +22,7 @@ var before_end = '2024-05-24';
 var after_start = '2024-09-15';
 var after_end = '2024-10-10';
 ```
-#### โหลดข้อมูล Sentinel-1 และกรองตามพารามิเตอร์ที่กำหนด
+#### 3.โหลดข้อมูล Sentinel-1 และกรองตามพารามิเตอร์ที่กำหนด
 ```javascript
 // 4. Define parameters for Sentinel-1 data
 var polarization = "VH"; // 'VV'  'VH' 
@@ -44,7 +44,7 @@ var after_collection = collection.filterDate(after_start, after_end);
 var before = before_collection.mosaic().clip(aoi);
 var after = after_collection.mosaic().clip(aoi);
 ```
-#### คำนวณความแตกต่างของสัญญาณเรดาร์ระหว่างสองช่วงเวลา
+#### 4.คำนวณความแตกต่างของสัญญาณเรดาร์ระหว่างสองช่วงเวลา
 ```javascript
 // 5. Calculate the difference in backscatter between the two periods
 var smoothing_radius = 25;
@@ -56,7 +56,7 @@ var difference_db = after_filtered.subtract(before_filtered);
 var difference_binary = difference_db.lte(difference_threshold);
 var flood_raw_mask = difference_db.updateMask(difference_binary);
 ```
-#### ปรับปรุง mask น้ำท่วมโดยใช้เกณฑ์อื่น ๆ
+#### 5.ปรับปรุง mask น้ำท่วมโดยใช้เกณฑ์อื่น ๆ
 ```javascript
 // 6. Refine the flood mask using additional criteria
 var swater = ee.Image('JRC/GSW1_0/GlobalSurfaceWater').select('seasonality');
@@ -70,7 +70,7 @@ var terrain = ee.Algorithms.Terrain(dem);
 var slope = terrain.select('slope');
 var flooded = flooded.updateMask(slope.lt(5));
 ```
-#### แสดงผลลัพธ์  
+#### 6.แสดงผลลัพธ์  
 ```javascript
 // 7. Display the results
 Map.centerObject(aoi);
@@ -82,8 +82,8 @@ Map.addLayer(flooded, { palette: 'blue' }, 'Flooded Areas', 1);
 ```
 
 
-### Drought Monitoring using CHIRPS Precipitation Data
-#### เริ่มต้นด้วยการโหลดข้อมูล Thailand boundary และ CHIRPS monthly precipitation
+### 9.2 Drought Monitoring using CHIRPS Precipitation Data
+#### 1.โหลดข้อมูล Thailand boundary และ CHIRPS monthly precipitation
 ```javascript
 // 1. Load Thailand boundary
 var thailand = ee.FeatureCollection('USDOS/LSIB_SIMPLE/2017')
@@ -93,7 +93,7 @@ var thailand = ee.FeatureCollection('USDOS/LSIB_SIMPLE/2017')
 var precip = ee.ImageCollection('UCSB-CHG/CHIRPS/DAILY')
     .select('precipitation');
 ```
-#### Calculate Standardized Precipitation Index (SPI) for 3-month periods
+#### 2.Calculate Standardized Precipitation Index (SPI) for 3-month periods
 ```javascript
 // 3. Define the “current” 3-month period ending April 2025
 var targetDate = ee.Date('2024-01-01');
@@ -103,7 +103,7 @@ var current3mo = precip
     .filterDate(targetDate, startPeriod)
     .sum();
 ```
-#### Build a time series of historical 3-month sums
+#### 3.Build a time series of historical 3-month sums
 ```javascript
 // 4. Build a time series of historical 3-month sums (April–June each year)
 var years = ee.List.sequence(1981, 2023);
@@ -120,14 +120,14 @@ var historical3mo = ee.ImageCollection.fromImages(
 );
 print(historical3mo);
 ```
-#### Compute mean and standard deviation images from the historical period
+#### 4.Compute mean and standard deviation images from the historical period
 ```javascript
 // 5. Compute mean and standard deviation images from the historical period
 var mean3mo = historical3mo.mean();
 var stddev3mo = historical3mo.reduce(ee.Reducer.stdDev());
 print(mean3mo);
 ```
-#### Calculate the SPI-3 (approximate) as standardized anomaly
+#### 5.Calculate the SPI-3 (approximate) as standardized anomaly
 ```javascript
 // 6. Calculate the SPI-3 (approximate) as standardized anomaly
 var spi3 = current3mo
@@ -135,7 +135,7 @@ var spi3 = current3mo
     .divide(stddev3mo)
     .clip(thailand);
 ```
-#### Visualization parameters for SPI
+#### 6.Visualization parameters for SPI
 ```javascript
 // 7. Visualization parameters for SPI
 var spiVis = {
@@ -151,7 +151,7 @@ var spiVis = {
     ]
 };
 ```
-#### Display the SPI layer and add a legend
+#### 7.Display the SPI layer and add a legend
 ```javascript
 // 8. Display the SPI layer
 Map.centerObject(thailand, 6);

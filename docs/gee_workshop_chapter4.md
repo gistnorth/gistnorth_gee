@@ -1,6 +1,6 @@
 basic JavaScript guide for Google Earth Engine (GEE) development:
 
-### 1. Variables and Data Types
+### 4.1 Variables and Data Types
 ```javascript
 // 1.Variable declaration
 var number = 42;                  // Number
@@ -29,7 +29,7 @@ var image = ee.Image("LANDSAT/LC08/C01/T1/LC08_044034_20140318");
 var geometry = ee.Geometry.Point([-122.082, 37.42]);
 ```
 
-### 2. Comment
+### 4.2 Comment
 ```javascript
 // Single line comment
 /*
@@ -40,8 +40,8 @@ Multi-line comment
 
 ```
 
-### 3. Functions
-#### Client-side function
+### 4.3 Functions
+#### 1.Client-side function
 ```javascript
 // 8.function declaration 
 function showMessage() {
@@ -58,7 +58,7 @@ function addNumbers(a, b) {
 var sum = addNumbers(5, 10);      // 15
 
 ```
-#### Earth Engine function
+#### 2.Earth Engine function
 ```javascript
 // 11.Earth Engine function
 var roi = ee.Geometry.Polygon(
@@ -87,8 +87,8 @@ Map.addLayer(medianNDVI, {min: 0, max: 1}, 'Median NDVI');
 
 ```
 
-### 4. if…else Statements
-#### Client-side if…else
+### 4.4 if…else Statements
+#### 1.Client-side if…else
 ```javascript
 // 15.Client-side if…else
 var x = 7;
@@ -103,7 +103,7 @@ if (x > y) {
   print('x is less than y');
 }
 ```
-#### Earth Engine if…else
+#### 2.Earth Engine if…else
 ```javascript
 // 17.Earth Engine if…else
 var image = ee.Image('LANDSAT/LC09/C02/T1_TOA/LC09_131047_20240103');
@@ -120,7 +120,7 @@ print('Result:', result);
 
 ```
 
-### 5. Loops
+### 4.5 Loops
 ```javascript
 // 19.Client-side for loop
 for (var i = 0; i < 5; i++) {
@@ -156,7 +156,7 @@ var ndviCollection = collection.map(function(image) {
 
 ```
 
-### 6. Object
+### 4.6 Object
 ```javascript
 // 24.Object creation
 var Car = {
@@ -196,8 +196,8 @@ tota.stop = function() {
 tota.start().drive().stop(); 
 ```
 
-### 7. EE Objects and Methods
-#### Earth Engine objects
+### 4.7 EE Objects and Methods
+#### 1.Earth Engine objects
 ```javascript
 // 28.Earth Engine objects for geometry and feature
 var geometry = ee.Geometry.Polygon(
@@ -218,7 +218,7 @@ print('Area:', area);
 Map.centerObject(feature, 10); 
 Map.addLayer(feature, {color: 'red'}, 'Feature'); 
 ```
-#### Earth Engine objects for image and image collection
+#### 2.Earth Engine objects for image and image collection
 ```javascript
 // 30.Earth Engine objects for image
 var image = ee.Image('LANDSAT/LC09/C02/T1_TOA/LC09_131047_20240103');
@@ -245,7 +245,7 @@ Map.setCenter(98.9616, 18.7137);
 Map.addLayer(trueColor432, trueColor432Vis, 'True Color (432)');  
 ```
 
-### 8. Method Chaining
+### 4.8 Method Chaining
 ```javascript
 // 32.Method chaining for Earth Engine objects
 var image = ee.Image('LANDSAT/LC09/C02/T1_TOA/LC09_131047_20240103');

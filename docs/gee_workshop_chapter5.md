@@ -1,5 +1,5 @@
-### 1. Image
-#### Image object
+### 5.1 Image
+#### 1.Image object
 ```javascript
 // 1. Image object
 var image = ee.Image('LANDSAT/LC09/C02/T1_L2/LC09_129050_20231220')
@@ -12,7 +12,7 @@ Map.centerObject(image, 10);
 Map.addLayer(rgb, {min: 0.2, max: 0.6, gamma: 2.0}, 'RGB');
 
 ```
-#### Image from ImageCollection
+#### 2.Image from ImageCollection
 ```javascript
 
 // 2. Image from ImageCollection
@@ -59,7 +59,7 @@ Map.addLayer(image, trueColor, 'Landsat 9 True Color');
 
 ```
 
-### 2. Image Collection
+### 5.2 Image Collection
 ```javascript
 // 10. Image Collection object
 var geometry = ee.Geometry.Polygon(
@@ -78,7 +78,7 @@ Map.centerObject(geometry, 10);
 Map.addLayer(collection, {bands: ['B4', 'B3', 'B2'], min: 0.0, max: 0.3, gamma: 1.5}, 'Median Image');
 ```
 
-### 3. Geometry
+### 5.3 Geometry
 ```javascript
 // 11. Geometry object
 var point = ee.Geometry.Point([98.9171009716561, 18.815619476862654]);
@@ -108,7 +108,7 @@ Map.addLayer(buffer, {color: 'blue'}, 'Buffer');
 Map.addLayer(centroid, {color: 'green'}, 'Centroid');  
 ```
 
-### 4. Feature
+### 5.4 Feature
 ```javascript
 // 13. Feature object
 var point = ee.Geometry.Point([98.9171009716561, 18.815619476862654]);
@@ -128,7 +128,7 @@ Map.centerObject(feature, 10);
 Map.addLayer(feature, {color: 'red'}, 'Feature');
 ```
 
-### 5. Feature Collection
+### 5.5 Feature Collection
 ```javascript
 // 14. Feature Collection object
 var point1 = ee.Geometry.Point([98.9171009716561, 18.815619476862654]);
@@ -142,7 +142,7 @@ Map.centerObject(featureCollection, 10);
 Map.addLayer(featureCollection, {color: 'red'}, 'Feature Collection');
 ```
 
-### 6. Reducer
+### 5.6 Reducer
 ```javascript
 // 15. Reducer object across time
 var polygon = ee.Geometry.Polygon(
@@ -160,7 +160,7 @@ var meanTime = s2.reduce(ee.Reducer.mean());
 
 Map.addLayer(meanTime, {bands:['B4_mean','B3_mean','B2_mean'], min:0, max:3000}, 'Mean per Pixel over Time');
 ```
-#### Histogram
+#### 1.Histogram
 ```javascript
 // 16. Histogram
 var polygon = ee.Geometry.Polygon(
@@ -192,7 +192,7 @@ var chart = ui.Chart.array.values(monthlyCount, 0, months)
     });
 print(chart);
 ```
-#### Image statistics (reduceRegion)
+#### 2.Image statistics (reduceRegion)
 ```javascript
 // 17. Regional statistics (reduceRegion)
 var polygon = ee.Geometry.Polygon(
@@ -217,7 +217,7 @@ var stats = meanTime.reduceRegion({
 });
 print('Mean & Max over polygon:', stats);
 ```
-#### Neighborhood / Focal operations (reduceNeighborhood)
+#### 3.Neighborhood / Focal operations (reduceNeighborhood)
 ```javascript
 // 18. Neighborhood / Focal operations (reduceNeighborhood)
 var polygon = ee.Geometry.Polygon(
@@ -239,7 +239,7 @@ Map.addLayer(focalMean, {min:0, max:3000}, '3×3 Focal Mean');
 
 ```
 
-#### Reduce minMax
+#### 4.Reduce minMax
 ```javascript
 var minMax = dataset.reduceRegion({
   reducer: ee.Reducer.minMax(),
@@ -250,7 +250,7 @@ var minMax = dataset.reduceRegion({
 print('ค่า min/max ของ NDVI:', minMax);
 ```
 
-#### Per-band summary (reduceRegion on multiband)
+#### 5.Per-band summary (reduceRegion on multiband)
 ```javascript
 // 19. Per-band summary (reduceRegion on multiband)
 var polygon = ee.Geometry.Polygon(
@@ -270,7 +270,7 @@ var bandStats = composite.reduceRegion({
 });
 print('Mean per band:', bandStats);
 ```
-#### Across-band summary (reduceRegion on multiband)
+#### 6.Across-band summary (reduceRegion on multiband)
 ```javascript
 // 20. Across-band reduction (reduce)
 var polygon = ee.Geometry.Polygon(
@@ -294,7 +294,7 @@ var meanNDVI = ndviCollection.reduce(ee.Reducer.mean());
 Map.addLayer(meanNDVI, {min: -1.0, max: 1.0}, 'mean across Bands');
 ```
 
-### 7 join
+### 5.7 join
 ```javascript
 // 21. Join operation
 var points = ee.FeatureCollection([

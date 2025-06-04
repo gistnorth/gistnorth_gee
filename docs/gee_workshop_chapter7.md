@@ -1,6 +1,4 @@
-
-### 7. UI Elements
-#### 7.1 Create UI Panel
+### 7.1 Create UI Panel
 ```javascript
 // Create the left “layer” panel
 var layerPanel = ui.Panel({
@@ -43,7 +41,7 @@ root.add(chartPanel);
 ui.root.clear();
 ui.root.add(root);
 ```
-#### 7.2 Add layers
+### 7.2 Add layers
 ```javascript
 // Add layers
 var polygon = ee.Geometry.Polygon(
@@ -136,7 +134,7 @@ mapPanel.add(trueColorLayer);
 // Set center the map on the polygon
 mapPanel.centerObject(polygon); 
 ```
-#### 7.3 Add checkboxes
+### 7.3 Add checkboxes
 ```javascript
 // Add checkboxes to the layer panel
 // Checkbox for NDVI
@@ -187,7 +185,7 @@ var polylineCheckbox = ui.Checkbox({
 // Add the checkbox to the layer panel
 layerPanel.add(polylineCheckbox);
 ```
-#### 7.4 Add chart buttons
+### 7.4 Add chart buttons
 ```javascript
 // Add a button to the chart panel
 var chartButton = ui.Button({
