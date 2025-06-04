@@ -13,19 +13,19 @@
 
 ## สารบัญ (Table of Contents)
 
-| บท | หัวข้อ | ไฟล์ |
-|----|--------|------|
-| บทที่ 1 | รู้จักกับ Google Earth Engine (GEE) |
-| บทที่ 2 | การใช้งาน GEE Code Editor  |
-| บทที่ 3 | [ข้อมูลและแหล่งข้อมูลใน GEE](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter3.md) |
-| บทที่ 4 | [พื้นฐานภาษา JavaScript สำหรับ GEE](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter4.md) |
-| บทที่ 5 | [GEE Objects](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter5.md) |
-| บทที่ 6 | [การทำงานกับข้อมูลภาพถ่ายดาวเทียม](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter6.md) |
-| บทที่ 7 | [การสร้างแอปพลิเคชัน GEE App](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter7.md) |
-| บทที่ 8 | [การจำแนกที่ดินและการเปลี่ยนแปลง](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter8.md) |
-| บทที่ 9 | [การติดตามสถานการณ์ภัยพิบัติ](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter9.md) |
-| 🔗 | [เอกสารบรรยาย](https://github.com/gistnorth/gistnorth_gee/blob/main/document/gee_workshop_ppt.pdf) |
-| 📄 | [เอกสารคู่มือ (PDF)](https://github.com/gistnorth/gistnorth_gee/blob/main/document/gee_workshop.pdf) |
+| บท | หัวข้อ |
+|----|--------|
+| บทที่ 1 | รู้จักกับ Google Earth Engine (GEE) 
+| บทที่ 2 | การใช้งาน GEE Code Editor  
+| บทที่ 3 | [ข้อมูลและแหล่งข้อมูลใน GEE](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter3.md) 
+| บทที่ 4 | [พื้นฐานภาษา JavaScript สำหรับ GEE](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter4.md) 
+| บทที่ 5 | [GEE Objects](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter5.md) 
+| บทที่ 6 | [การทำงานกับข้อมูลภาพถ่ายดาวเทียม](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter6.md) 
+| บทที่ 7 | [การสร้างแอปพลิเคชัน GEE App](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter7.md) 
+| บทที่ 8 | [การจำแนกที่ดินและการเปลี่ยนแปลง](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter8.md) 
+| บทที่ 9 | [การติดตามสถานการณ์ภัยพิบัติ](https://github.com/gistnorth/gistnorth_gee/blob/main/gee_workshop_chapter9.md) 
+| 🔗 | [เอกสารบรรยาย](https://github.com/gistnorth/gistnorth_gee/blob/main/document/gee_workshop_ppt.pdf) 
+| 📄 | [เอกสารคู่มือ (PDF)](https://github.com/gistnorth/gistnorth_gee/blob/main/document/gee_workshop.pdf) 
 
 ---
 
