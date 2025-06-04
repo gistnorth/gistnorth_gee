@@ -23,7 +23,7 @@
 - 🔗 [PDF คู่มืออบรม (gee_workshop.pdf)](https://github.com/gistnorth/gistnorth_gee/blob/main/document/gee_workshop_doc.pdf)
 - 🖥️ [สไลด์ประกอบการอบรม](https://github.com/gistnorth/gistnorth_gee/blob/main/document/gee_workshop_ppt.pdf)
 
-- 📁 [โค้ดตัวอย่างในแต่ละบท](https://github.com/gistnorth/gistnorth_gee/tree/main/examples)
+- 📁 โค้ดตัวอย่างในแต่ละบท
 
     - [รู้จักกับ Google Earth Engine (GEE)](gee_workshop_chapter1.md) 
     - [การใช้งาน GEE Code Editor](gee_workshop_chapter2.md) 
@@ -34,7 +34,6 @@
     - [การสร้างแอปพลิเคชัน GEE App](gee_workshop_chapter7.md) 
     - [การจำแนกการใช้ที่ดินและการเปลี่ยนแปลง](gee_workshop_chapter8.md) 
     - [การติดตามสถานการณ์ภัยพิบัติ](gee_workshop_chapter9.md) 
-
 
 ---
 
