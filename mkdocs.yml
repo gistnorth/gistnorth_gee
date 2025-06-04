@@ -1,0 +1,46 @@
+site_name: Google Earth Engine Workshop (GISTNORTH)
+site_url: https://gistnorth.github.io/gistnorth_gee/
+site_author: GISTNORTH, Chiang Mai University
+repo_url: https://github.com/gistnorth/gistnorth_gee
+
+theme:
+  name: material
+  palette:
+    scheme: default
+    primary: indigo
+    accent: teal
+  font:
+    # text: Droid Sans
+    text: Noto Sans Thai
+    code: Roboto Mono
+  features:
+    - navigation.instant
+    - navigation.sections
+    - search.highlight
+    - toc.integrate
+    - content.code.copy
+
+nav:
+  - หน้าแรก: index.md
+  - บทที่ 1: gee_workshop_chapter1.md
+  - บทที่ 2: gee_workshop_chapter2.md
+  - บทที่ 3: gee_workshop_chapter3.md
+  - บทที่ 4: gee_workshop_chapter4.md
+  - บทที่ 5: gee_workshop_chapter5.md
+  - บทที่ 6: gee_workshop_chapter6.md
+  - บทที่ 7: gee_workshop_chapter7.md
+  - บทที่ 8: gee_workshop_chapter8.md
+  - บทที่ 9: gee_workshop_chapter9.md
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+  - footnotes
+  - def_list
+  - attr_list
+  - pymdownx.extra
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.details
