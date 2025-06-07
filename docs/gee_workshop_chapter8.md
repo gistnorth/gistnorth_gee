@@ -121,7 +121,6 @@ print('Overall accuracy:', testAccuracy.accuracy());
 ```
 #### 11.Perform Change Detection
 ```javascript
-// 11. Perform Change Detection
 // 11.1 สร้างภาพที่แสดงการเปลี่ยนแปลงแบบ "จาก-ไป" (From-To Change)
 // โดยนำค่า class จาก classified1 คูณ 100 แล้วบวกด้วยค่า class จาก classified2
 // เพื่อให้ได้ค่าที่ไม่ซ้ำกันสำหรับแต่ละคู่ของการเปลี่ยนแปลง เช่น ป่าไม้(3) ไป เมือง(1) จะเป็น 301
@@ -151,9 +150,9 @@ var binaryChange = classified1.neq(classified2);
 
 // แสดงผลภาพ binary change (พื้นที่สีแดงคือมีการเปลี่ยนแปลง)
 Map.addLayer(binaryChange.selfMask(), {palette: ['FF0000']}, 'Binary Change (Any Change)', true);
-
-// 12. (เพิ่มเติม) คำนวณพื้นที่ของการเปลี่ยนแปลงแต่ละประเภท (ตัวอย่าง)
-
+```
+#### 12. (เพิ่มเติม) คำนวณพื้นที่ของการเปลี่ยนแปลงแต่ละประเภท (ตัวอย่าง)
+```javascript
 // สร้างฟังก์ชันสำหรับคำนวณพื้นที่
 function calculateArea(image, geometry, scale) {
   var areaImage = image.multiply(ee.Image.pixelArea());
@@ -173,3 +172,4 @@ print('Area changed from Forest to Urban (hectares):', areaForestToUrban_ha);
 // คำนวณพื้นที่ที่มีการเปลี่ยนแปลงทั้งหมด (binary change)
 var areaAnyChange_ha = calculateArea(binaryChange, roi, 10);
 print('Total area with any change (hectares):', areaAnyChange_ha);
+```
